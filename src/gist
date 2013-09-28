@@ -1,0 +1,117 @@
+#!/usr/bin/env python
+
+import sys, urllib2, base64, json, getpass, requests, os.path
+
+#-------------------------------------------
+# Config
+
+GITHUB_API = "https://api.github.com"
+HOME = os.path.expanduser('~')
+TOKENFILE = '/.gist'
+
+#-------------------------------------------
+# Globals
+
+token = None
+username = None
+password = None
+
+#-------------------------------------------
+
+def debug (obj):
+  a = 1
+  ##  print obj
+
+#-------------------------------------------
+
+def getCredentials ():
+  global token, username, password
+  if( os.path.exists( HOME + TOKENFILE) ):
+    file = open(HOME + TOKENFILE, 'r')
+    token = file.read().strip()
+    debug ('token from file: ' + token)
+  else:
+    debug (HOME + TOKENFILE + ' not found.')
+    username = raw_input("Username:")
+    password = getpass.getpass()
+
+#-------------------------------------------
+
+def list ():
+  global token, username, password
+  url = GITHUB_API + "/user"
+  result=''
+  try:
+    if token != None:
+      request = requests.get( url, params={'access_token': token} )
+      debug (request.url)
+    else:
+      request = requests.get( url, auth=(username, password) )
+      debug (request.url)
+    if request.status_code != 200:
+      print 'Github Authentication error: %s' % str(request.status_code)
+      print 'Please check your user name and/or password.'
+      sys.exit(0)
+    json_dict = json.loads( request.text )
+    public_gists = json_dict['public_gists']
+    private_gists = json_dict['private_gists']
+    print 'You have %i Private Gists and %i Public Gists' % (private_gists, public_gists)
+    debug (json_dict.keys())
+  except Exception as e:
+    print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e )
+    sys.exit(0)
+
+#-------------------------------------------
+
+def add ():
+  print "Add"
+
+#-------------------------------------------
+
+def update ():
+  print "Update"
+
+#-------------------------------------------
+
+def delete ():
+  print "Delete"
+
+#-------------------------------------------
+
+def get ():
+  print "Get"
+
+#-------------------------------------------
+
+def main ( args ):
+  debug ("Main " + str( args ))
+
+  getCredentials()
+
+  cmd = "list" if len(args) == 1 else args[1]
+
+  if cmd in ("list", "l"):
+    list()
+
+  if cmd in ("add", "a"):
+    add()
+
+  if cmd in ("update", "u"):
+    update()
+
+  if cmd in ("delete", "d"):
+    delete()
+
+  if cmd in ("get", "g"):
+    get()
+    
+  debug ("Done.")
+
+#-------------------------------------------
+
+if __name__ == "__main__":
+  if len(sys.argv) == 1:
+    print "No arguments specified, listing your Gists. Try '%s help' if you need help" % sys.argv[0]
+  main (sys.argv)
+
+#-------------------------------------------
