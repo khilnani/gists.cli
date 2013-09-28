@@ -2,70 +2,28 @@
 
 # http://docs.python-requests.org/en/latest/user/quickstart/
 # http://www.pythonforbeginners.com/
+# http://docs.python.org/2/tutorial/inputoutput.html
 
-import sys, urllib2, base64, json, getpass, requests, os.path
-
-#-------------------------------------------
-# Config
-
-GITHUB_API = "https://api.github.com"
-HOME = os.path.expanduser('~')
-TOKENFILE = '/.gist'
-
-#-------------------------------------------
-# Globals
-
-token = None
-username = None
-password = None
-
-#-------------------------------------------
-
-def comment (obj):
-  print '>> ' + str(obj)
-
-def debug (obj):
-  ##  print obj
-  pass
-
-#-------------------------------------------
-
-def getCredentials ():
-  global token, username, password
-  if( os.path.exists( HOME + TOKENFILE) ):
-    file = open(HOME + TOKENFILE, 'r')
-    token = file.read().strip()
-    debug ('token from file: ' + token)
-  else:
-    debug (HOME + TOKENFILE + ' not found.')
-    username = raw_input("Username:")
-    password = getpass.getpass()
+import sys, os.path, rest, log
 
 #-------------------------------------------
 
 def list ():
-  global token, username, password
-  url = GITHUB_API + "/user"
-  result=''
-  try:
-    if token != None:
-      request = requests.get( url, params={'access_token': token} )
-      debug (request.url)
+  url = "/gists"
+  gists = rest.get(url)
+  public_count = 0
+  private_count = 0
+  for (i, gist) in enumerate(gists):
+    private = False
+    file_list = ''
+    for (file, data) in gist['files'].items():
+      file_list += file 
+    if gist['public']:
+      public_count += 1
     else:
-      request = requests.get( url, auth=(username, password) )
-      debug (request.url)
-    if request.status_code != 200:
-      print 'Github Authentication error: %s' % str(request.status_code)
-      print 'Please check your user name and/or password.'
-      sys.exit(0)
-    json_dict = json.loads( request.text )
-    public_gists = json_dict['public_gists']
-    private_gists = json_dict['private_gists']
-    print 'You have %i Private Gists and %i Public Gists' % (private_gists, public_gists)
-    debug (json_dict.keys())
-  except Exception as e:
-    print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e )
-    sys.exit(0)
+      private_count += 1
+    print '{0:4} {1:30} {2:8} {3}'.format(i, file_list, str(gist['public']), gist['description'])
+  print "You have %i Gists. (%i Private)" % (len(gists), private_count)
 
 #-------------------------------------------
 
@@ -90,9 +48,9 @@ def get ():
 #-------------------------------------------
 
 def main ( args ):
-  debug ("Main " + str( args ))
+  log.debug ("Main " + str( args ))
 
-  getCredentials()
+  rest.getCredentials()
 
   cmd = "list" if len(args) == 1 else args[1]
 
@@ -111,13 +69,13 @@ def main ( args ):
   if cmd in ("get", "g"):
     get()
     
-  debug ("Done.")
+  log.debug ("Done.")
 
 #-------------------------------------------
 
 if __name__ == "__main__":
   if len(sys.argv) == 1:
-    comment ("No arguments specified, listing your Gists. Try '%s help' if you need help" % sys.argv[0])
+    log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help" % sys.argv[0])
   main (sys.argv)
 
 #-------------------------------------------
