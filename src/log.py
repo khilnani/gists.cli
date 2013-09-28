@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import sys
+from datetime import datetime
 
 #-------------------------------------------
 
@@ -10,8 +11,7 @@ def comment (obj):
 
 def debug (obj):
   if enabled:
-    print obj
-  pass
+    print '[' + str(datetime.now()) + ']: ' + str(obj)
 
 for arg in sys.argv:
   if arg in ('debug'):

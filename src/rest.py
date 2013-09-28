@@ -39,14 +39,14 @@ def getCredentials ():
   if os.path.exists( HOME + TOKENFILE):
     file = open(HOME + TOKENFILE, 'r')
     token = file.read().strip()
-    log.debug (HOME + TOKENFILE + " = " + token)
+    log.debug ("Credentials: " + HOME + TOKENFILE + " = " + token)
   elif os.path.exists( HOME + CREDENTIALS):
     file = open(HOME + CREDENTIALS, 'r')
     line = file.read().strip()
     token = line.split(':')[2].split('@')[0]
-    log.debug (HOME + CREDENTIALS + " = " + token)
+    log.debug ("Credentials: " + HOME + CREDENTIALS + " = " + token)
   else:
-    log.debug (HOME + TOKENFILE + ' not found.')
+    log.debug ("Credentials: No token found.")
     username = raw_input("Username:")
     password = getpass.getpass()
 
