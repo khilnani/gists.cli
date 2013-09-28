@@ -1,23 +1,44 @@
 #!/usr/bin/env python
 
-import sys, os, subprocess, getopt
+import sys, urllib2, base64, json, getpass
 
 #-------------------------------------------
 
-def curl(command):
-  result=''
-  try:
-    result = subprocess.call(command, shell=False)
-  except:
-    print 'Error authenticating against github'
-    sys.exit(0)
-  return result
+GITHUB_API = "https://api.github.com"
+
+#-------------------------------------------
+
+def debug (obj):
+  print obj
+
+#-------------------------------------------
 
 def auth ():
-  user = raw_input("Username:")
-  op = curl( ['curl', '-u', user, 'https://api.github.com/user'] )
-  print "--"
-  print op
+  result=''
+  username = raw_input("Username:")
+  password = getpass.getpass()
+  try:
+    request = urllib2.Request( GITHUB_API + "/user" )
+    base64string = base64.encodestring('%s:%s' % (username, password)).replace('\n', '')
+    request.add_header("Authorization", "Basic %s" % base64string) 
+    response = urllib2.urlopen(request) 
+#    debug( response.info() )
+    result = response.read()
+    response.close()
+  except urllib2.HTTPError as httpe:
+    print 'Github Authentication error: %s' % str(httpe)
+    print 'Please check your user name and/or password.'
+    sys.exit(0)
+  except Exception as e:
+    print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e )
+    sys.exit(0)
+#  debug( result )
+  json_obj = json.loads( result )
+  public_gists = json_obj['public_gists']
+  private_gists = json_obj['private_gists']
+  print 'You have %i Private Gists and %i Public Gists' % (private_gists, public_gists)
+  return result
+
 
 #-------------------------------------------
 
