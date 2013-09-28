@@ -4,7 +4,7 @@
 # http://www.pythonforbeginners.com/
 # http://docs.python.org/2/tutorial/inputoutput.html
 
-import sys, os.path, rest, log
+import sys, os.path, rest, log, util
 
 #-------------------------------------------
 
@@ -27,8 +27,9 @@ def list ():
       public_count += 1
     else:
       private_count += 1
-    print '{0:4} {1:30} {2:8} {3:25} {4}'.format(i, file_list, str(gist['public']), gist['id'], gist['description'])
-  print "You have %i Gists. (%i Private)" % (len(gists), private_count)
+    print '{0:4} {1:30} {2:8} {3:25} {4}'.format(i+1, file_list, str(gist['public']), gist['id'], gist['description'])
+  print ''
+  print "     You have %i Gists. (%i Private)" % (len(gists), private_count)
 
 #-------------------------------------------
 
@@ -71,10 +72,11 @@ def view (id):
   gist = get_gist(id)
   for (file, data) in gist['files'].items():
     content = data['content']
+    util.line()
     print 'Gist: {:25} File: {}'.format(id, file)
-    print '-------------------------------------------------------------------START'
+    util.line('START')
     print content
-    print '-------------------------------------------------------------------END'
+    util.line('END')
 
 #-------------------------------------------
 
@@ -87,7 +89,6 @@ def get (id, path):
 
 def main ( args ):
 
-  print ''
   log.debug ("Arguments " + str( args ))
 
   del args[0] # Delete the filename
@@ -137,13 +138,15 @@ def main ( args ):
         get( cmd, args[0] ) # if no match, cmd has the ID, arg[0] has the path
 
   log.debug ("Done.")
-  print ''
 
 #-------------------------------------------
 
 if __name__ == "__main__":
+  print ''
   if len(sys.argv) == 1:
-    log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help" % sys.argv[0])
+    log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % sys.argv[0])
+    print ''
   main (sys.argv)
+  print ''
 
 #-------------------------------------------
