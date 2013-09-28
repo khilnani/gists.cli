@@ -27,13 +27,18 @@ def list ():
 
 #-------------------------------------------
 
-def add ():
-  print "Add"
+def new ():
+  print "New"
 
 #-------------------------------------------
 
 def update ():
   print "Update"
+
+#-------------------------------------------
+
+def append ():
+  print "Append"
 
 #-------------------------------------------
 
@@ -48,17 +53,24 @@ def get ():
 #-------------------------------------------
 
 def main ( args ):
-  log.debug ("Main " + str( args ))
-
-  rest.getCredentials()
+  log.debug ("Arguments " + str( args ))
 
   cmd = "list" if len(args) == 1 else args[1]
+
+  if cmd in ("token", "t"):
+    rest.updateCredentials()
+    sys.exit(0)
+
+  rest.getCredentials()
 
   if cmd in ("list", "l"):
     list()
 
-  if cmd in ("add", "a"):
-    add()
+  if cmd in ("new", "n"):
+    new()
+
+  if cmd in ("apped", "a"):
+    append()
 
   if cmd in ("update", "u"):
     update()
@@ -68,7 +80,7 @@ def main ( args ):
 
   if cmd in ("get", "g"):
     get()
-    
+
   log.debug ("Done.")
 
 #-------------------------------------------

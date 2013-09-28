@@ -8,7 +8,8 @@ import sys, os.path, json, getpass, requests, log
 
 GITHUB_API = "https://api.github.com"
 HOME = os.path.expanduser('~')
-TOKENFILE = '/.gist'
+TOKENFILE = '/.gist'                # first line with TOKEN. Checked first.
+CREDENTIALS = '/.git-credentials'   # Uses first entry. Format: https://USER:TOKEN@github.com Checked second. 
 
 #-------------------------------------------
 # Globals
@@ -19,12 +20,31 @@ password = None
 
 #-------------------------------------------
 
+def updateCredentials ():
+  global token
+  new_token = getpass.getpass("Enter/Paste the new GitHub OAuth token:")
+  try:
+    file = open(HOME + TOKENFILE, "w")
+    file.write( new_token )
+    file.close()
+    token = new_token
+    print "New token written to: " + HOME + TOKENFILE
+  except Exception as e:
+    print "Insufficient privilages to write the access token to %s." % (HOME + TOKENFILE)
+    print "Error message: " + str(e)
+
+
 def getCredentials (): 
   global token, username, password
-  if( os.path.exists( HOME + TOKENFILE) ):
+  if os.path.exists( HOME + TOKENFILE):
     file = open(HOME + TOKENFILE, 'r')
     token = file.read().strip()
-    log.debug ('Token from file: ' + token)
+    log.debug (HOME + TOKENFILE + " = " + token)
+  elif os.path.exists( HOME + CREDENTIALS):
+    file = open(HOME + CREDENTIALS, 'r')
+    line = file.read().strip()
+    token = line.split(':')[2].split('@')[0]
+    log.debug (HOME + CREDENTIALS + " = " + token)
   else:
     log.debug (HOME + TOKENFILE + ' not found.')
     username = raw_input("Username:")
@@ -45,7 +65,7 @@ def get (path, params={}):
       request = requests.get( url, auth=(username, password), params=params )
       log.debug (request.url)
     if request.status_code != 200:
-      print 'Github Authentication error: %s' % str(request.status_code)
+      print 'Github API Error: %s' % str(request.status_code)
       print 'Please check your user name and/or password.'
       sys.exit(0)
     result = json.loads( request.text )
