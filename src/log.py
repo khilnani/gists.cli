@@ -13,6 +13,6 @@ def debug (obj):
   if enabled:
     print '[' + str(datetime.now()) + ']: ' + str(obj)
 
-for arg in sys.argv:
-  if arg in ('debug'):
-    enabled = True
+if sys.argv[-1] in ('debug'):
+  enabled = True
+  del sys.argv[-1]
