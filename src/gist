@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+# http://docs.python-requests.org/en/latest/user/quickstart/
+# http://www.pythonforbeginners.com/
+
 import sys, urllib2, base64, json, getpass, requests, os.path
 
 #-------------------------------------------
@@ -18,9 +21,12 @@ password = None
 
 #-------------------------------------------
 
+def comment (obj):
+  print '>> ' + str(obj)
+
 def debug (obj):
-  a = 1
   ##  print obj
+  pass
 
 #-------------------------------------------
 
@@ -111,7 +117,7 @@ def main ( args ):
 
 if __name__ == "__main__":
   if len(sys.argv) == 1:
-    print "No arguments specified, listing your Gists. Try '%s help' if you need help" % sys.argv[0]
+    comment ("No arguments specified, listing your Gists. Try '%s help' if you need help" % sys.argv[0])
   main (sys.argv)
 
 #-------------------------------------------
