@@ -3,18 +3,18 @@ GistCommand
 
 > I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
 
-GistCommand - A CLI to create, edit, view and list gists. [https://github.com/khilnani/gistcommand/](https://github.com/khilnani/gistcommand/)
+GistCommand - A CLI to create, edit, view and list gists. https://github.com/khilnani/gistcommand/
 
 Installation
 ============
 
-If you have [Python PIP](http://www.pip-installer.org/) Installed
+If you have Python PIP http://www.pip-installer.org/ Installed
 
 - `pip install gistcommand`
 
 If you prefer manual installation
 
-- `git clone https://github.com/khilnani/gistcommand.git` or download the latest Tag Archive from [https://github.com/khilnani/gistcommand](https://github.com/khilnani/gistcommand)
+- `git clone https://github.com/khilnani/gistcommand.git` or download the latest Tag Archive from https://github.com/khilnani/gistcommand
 - Run the installer
   - `./install.py` with no arguments will install to `/usr/local/bin`
   - `./install.py INSTALL_PATH` to install to a specific directory
@@ -50,6 +50,6 @@ In Development
 Issues and Roadmap
 ==================
 
-- Take a look at [https://github.com/khilnani/gistcommand/issues](https://github.com/khilnani/gistcommand/issues) to view Issues and Milestones
+- Take a look at https://github.com/khilnani/gistcommand/issues to view Issues and Milestones
 
 
