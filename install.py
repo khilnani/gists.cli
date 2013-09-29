@@ -25,7 +25,7 @@ if os.path.exists(target_path):
     print ('Removing old ' + target_dir)
     os.system('rm -rf ' + target_dir)
   print ('Copying files to {0}'.format(target_dir))
-  os.system ('cp -rf ./src {0}'.format(target_dir))
+  os.system ('cp -rf ./gistcommand {0}'.format(target_dir))
   print ('Creating {0}/gist alias'.format(target_path))
   os.system ('ln -sf {0}/gist.py {1}/gist'.format(target_dir,target_path))
   print ('Done.')
