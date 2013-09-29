@@ -5,9 +5,9 @@ from setuptools import setup, find_packages
 
 readme = open('README.md', 'r').read()
 setup(
-    name='gistcommand',
+    name='gists.cli',
     version='0.1',
-    url='https://github.com/khilnani/gistcommand',
+    url='https://github.com/khilnani/gists.cli',
     license='GPLv2',
     author='khilnani',
     author_email='nik@khilnani.org',
@@ -18,7 +18,7 @@ setup(
     install_requires=['requests'],
     entry_points={
         'console_scripts': [
-            'gists = gistcommand.gists:main',
+            'gists = gists_cli.gists:main',
             ]
     },
     classifiers=[
