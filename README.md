@@ -3,7 +3,7 @@ Gists.CLI
 
 > I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
 
-GistCommand - An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, search and download. 
+An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, search and download. 
 
 - Github - https://github.com/khilnani/gists.cli 
 - Python Package - https://pypi.python.org/pypi/gists.cli
