@@ -1,0 +1,4 @@
+include README.md
+include setup.py
+include setup.cfg
+recursive-include gistcommand *.py

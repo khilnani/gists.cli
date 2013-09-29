@@ -87,7 +87,15 @@ def get (id, path):
 
 #-------------------------------------------
 
-def main ( args ):
+def main ( ):
+
+  args = sys.argv
+  
+  print ''
+
+  if len(args) == 1:
+    log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % sys.argv[0])
+    print ''
 
   log.debug ("Arguments " + str( args ))
 
@@ -138,15 +146,10 @@ def main ( args ):
         get( cmd, args[0] ) # if no match, cmd has the ID, arg[0] has the path
 
   log.debug ("Done.")
-
+  print ''
 #-------------------------------------------
 
 if __name__ == "__main__":
-  print ''
-  if len(sys.argv) == 1:
-    log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % sys.argv[0])
-    print ''
-  main (sys.argv)
-  print ''
+  main ()
 
 #-------------------------------------------

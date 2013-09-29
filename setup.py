@@ -3,7 +3,7 @@
 
 from setuptools import setup, find_packages
 
-readme = open('README.rst', 'r').read()
+readme = open('README.md', 'r').read()
 setup(
     name='gistcommand',
     version='0.1',
@@ -18,7 +18,7 @@ setup(
     install_requires=['requests'],
     entry_points={
         'console_scripts': [
-            'gist = gistcommand.gist:main',
+            'gists = gistcommand.gists:main',
             ]
     },
     classifiers=[
