@@ -1,21 +1,21 @@
 #!/usr/bin/env python
 
-import sys, rest, log, util
+import sys, api, log, util
 
 #-------------------------------------------
 
 def updateCredentials ():
-  rest.updateCredentials()
+  api.updateCredentials()
   sys.exit(0)
 
 #-------------------------------------------
 
 def list ():
-  rest.getCredentials()
+  api.getCredentials()
   log.debug ("Command: List.")
 
   url = "/gists"
-  gists = rest.get(url)
+  gists = api.get(url)
   public_count = 0
   private_count = 0
   print '{0:4} {1:30} {2:8} {3:25} {4}'.format('', 'Files', 'Public', 'Id', 'Description')
@@ -36,42 +36,42 @@ def list ():
 #-------------------------------------------
 
 def create (public=False,content=None,filename=None):
-  rest.getCredentials()
+  api.getCredentials()
   log.debug ("Command: Create: " + str(public) + ", " + str(filename) + ", " + str(content))
 
 #-------------------------------------------
 
 def update (id):
-  rest.getCredentials()
+  api.getCredentials()
   log.debug ("Command: Update" + id)
 
 #-------------------------------------------
 
 def append (id):
-  rest.getCredentials()
+  api.getCredentials()
   log.debug ("Command: Append" + id)
 
 #-------------------------------------------
 
 def delete (id):
-  rest.getCredentials()
+  api.getCredentials()
   log.debug ("Command: Delete" + id)
 
 #-------------------------------------------
 
-def get_gist(id):
-  rest.getCredentials()
-  log.debug ("Internal: get_gist: " + id) 
+def _get_gist(id):
+  api.getCredentials()
+  log.debug ("Internal: _get_gist: " + id) 
 
   url = "/gists/" + id
-  gist = rest.get(url)
+  gist = api.get(url)
   return gist
 
 #-------------------------------------------
 
 def view (id):
   log.debug ("Command: View: " + id)
-  gist = get_gist(id)
+  gist = _get_gist(id)
   for (file, data) in gist['files'].items():
     content = data['content']
     util.line()
@@ -84,7 +84,7 @@ def view (id):
 
 def get (id, path):
   log.debug ("Get: %s, %s" % (id, path))
-  gist = get_gist(id)
+  gist = _get_gist(id)
   print "Downloading Gist %s files to '%s'" % (id, path)
 
 #-------------------------------------------
