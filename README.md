@@ -13,7 +13,8 @@ Installation
 
 Recomended installation process
 
-- Install the Python package manager PIP (http://www.pip-installer.org/) `sudo easy_install pip`
+- Install the Python package manager PIP (http://www.pip-installer.org/)
+  - Run `sudo easy_install pip`
 - Once PIP is installed, run `pip install gists.cli`
 
 If you would like to develop or make changes to the code base
