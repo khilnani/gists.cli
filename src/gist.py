@@ -10,7 +10,7 @@ import sys, os.path, rest, log, util
 
 def list ():
   rest.getCredentials()
-  log.debug ("List.")
+  log.debug ("Command: List.")
 
   url = "/gists"
   gists = rest.get(url)
@@ -35,31 +35,31 @@ def list ():
 
 def create ():
   rest.getCredentials()
-  log.debug ("Create.")
+  log.debug ("Command: Create.")
 
 #-------------------------------------------
 
 def update (id):
   rest.getCredentials()
-  log.debug ("Update" + id)
+  log.debug ("Command: Update" + id)
 
 #-------------------------------------------
 
 def append (id):
   rest.getCredentials()
-  log.debug ("Append" + id)
+  log.debug ("Command: Append" + id)
 
 #-------------------------------------------
 
 def delete (id):
   rest.getCredentials()
-  log.debug ("Delete" + id)
+  log.debug ("Command: Delete" + id)
 
 #-------------------------------------------
 
 def get_gist(id):
   rest.getCredentials()
-  log.debug ("get_gist: " + id) 
+  log.debug ("Internal: get_gist: " + id) 
 
   url = "/gists/" + id
   gist = rest.get(url)
@@ -68,7 +68,7 @@ def get_gist(id):
 #-------------------------------------------
 
 def view (id):
-  log.debug ("View: " + id)
+  log.debug ("Command: View: " + id)
   gist = get_gist(id)
   for (file, data) in gist['files'].items():
     content = data['content']

@@ -60,10 +60,10 @@ def get (path, params={}):
     if token != None:
       params['access_token'] = token
       request = requests.get( url, params=params )
-      log.debug (request.url)
+      log.debug ('API: ' + request.url)
     else:
       request = requests.get( url, auth=(username, password), params=params )
-      log.debug (request.url)
+      log.debug ('API: ' + request.url)
     if request.status_code != 200:
       print 'Github API Error: %s' % str(request.status_code)
       print 'Please check your user name and/or password.'
