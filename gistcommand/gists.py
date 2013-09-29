@@ -1,9 +1,5 @@
 #!/usr/bin/env python
 
-# http://docs.python-requests.org/en/latest/user/quickstart/
-# http://www.pythonforbeginners.com/
-# http://docs.python.org/2/tutorial/inputoutput.html
-
 import sys, os.path, rest, log, util
 
 #-------------------------------------------
