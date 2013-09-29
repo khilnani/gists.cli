@@ -29,9 +29,9 @@ def list ():
 
 #-------------------------------------------
 
-def create ():
+def create (public=False,content=None,filename=None):
   rest.getCredentials()
-  log.debug ("Command: Create.")
+  log.debug ("Command: Create: " + str(public) + ", " + str(filename) + ", " + str(content))
 
 #-------------------------------------------
 
@@ -99,39 +99,61 @@ def main ( ):
   cmd = None
 
   """---------------------------------------
-  args = 0: 
+  default command if no arguments at all
     list
   """
   if len(args) == 0:
     list()
   else:
+    """---------------------------------------
+    If args > 1, args[0] is the command. We remove it from the list
+    args now contains only the  command arguments
+    """
     cmd = args[0]
-    arg_len = len(args)
     del args[0] # Delete the command. Arguments remaining are the options for each command
     log.debug ("Potential cmd: " + cmd)
     log.debug ("Adjusted arguments " + str( args ))
 
     """ ---------------------------------------
-    args = 1:
-      create, ID, token 
+    cmd args = 0:
+      create
+      ID
+      token|t
     """
-    if arg_len == 1:
+    if len(args) == 0:
       if cmd in ("new", "n", "create", "c"):
-        create()
+        create()  # Create with no args
       elif cmd in ("token", "t"):
         rest.updateCredentials()
         sys.exit(0)
       else:
-        view( cmd )  # if there is only 1 arg and its not a command, its the gist id
+        view( cmd )  # if there are no args and the cmd doesnt match, assume the cmd is the gist id
     else:
       """ -----------------------------------------
-      args = 2+:
+      cmd args = 1+:
+         create CONTENT
+         create FILE
+         create private
+         create private CONTENT
+         create private FILE
          append ID
          update ID
          delete ID
          ID path
       """
-      if cmd in ("append", "a"):
+      if cmd in ("new", "n", "create", "c"):
+        if len(args) == 1:
+          # check if the arg is a Boolean, File or Content
+          if util.parseBool(args[0]) != None:
+            create( public = util.parseBool(args[0]) )
+          elif util.isFile(args[0]) == True:
+            create( filename = args[0] )
+          else:
+            create( content = args[0] )
+        elif len(args) > 1: 
+          # args could be boolean and File, or Boolean and Content
+          create( )
+      elif cmd in ("append", "a"):
         append( args[0] )
       elif cmd in ("update", "u"):
         update( args[0] )
