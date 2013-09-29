@@ -27,7 +27,7 @@ Authentication
 
 - By default the application will attempt to use Basic Auth to authenticate. 
 - If `~/.git-credentials` is available, it will use the first entry. 
-- If  `~/.gists` is found, it will be given preference over the above twp mechanisms.
+- If  `~/.gists` is found, it will be given preference over the above two mechanisms.
 
 Usage
 ---------
