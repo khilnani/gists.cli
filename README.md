@@ -38,7 +38,7 @@ Usage
 - `gists` - list your Gists.
 - `gists ID` - view Gist with ID on the console.
 - `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
-- `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `.gists`.
+- `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 Tips
 ---------
