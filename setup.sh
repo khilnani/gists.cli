@@ -1,3 +1,4 @@
 #!/bin/sh
 
-sudo pip install requests
+easy_install pip
+pip install requests
