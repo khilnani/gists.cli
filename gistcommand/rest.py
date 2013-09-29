@@ -8,7 +8,7 @@ import sys, os.path, json, getpass, requests, log
 
 GITHUB_API = "https://api.github.com"
 HOME = os.path.expanduser('~')
-TOKENFILE = '/.gist'                # first line with TOKEN. Checked first.
+TOKENFILE = '/.gists'                # first line with TOKEN. Checked first.
 CREDENTIALS = '/.git-credentials'   # Uses first entry. Format: https://USER:TOKEN@github.com Checked second. 
 
 #-------------------------------------------
