@@ -3,7 +3,10 @@ GistCommand
 
 > I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
 
-GistCommand - An easy to use CLI to create, edit, view and list gists. https://github.com/khilnani/gistcommand/
+GistCommand - An easy to use CLI to create, edit, view and list gists. 
+
+- Github - https://github.com/khilnani/gistcommand/
+- Python Package - https://pypi.python.org/pypi/gistcommand
 
 Installation
 ============
