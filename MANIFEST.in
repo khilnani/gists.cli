@@ -1,4 +1,5 @@
 include README.md
+include LICENSE
 include setup.py
 include setup.cfg
 recursive-include gists.cli *.py
