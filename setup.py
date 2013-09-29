@@ -11,7 +11,7 @@ setup(
     license='GPLv2',
     author='khilnani',
     author_email='nik@khilnani.org',
-    description='A CLI to create, edit, view and list GitHub Gists',
+    description='A CLI to create, edit, view and list your GitHub Gists',
     include_package_data=True,
     long_description=readme,
     packages=find_packages(),
