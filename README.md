@@ -17,7 +17,7 @@ If you have Python PIP http://www.pip-installer.org/ Installed
 
 If you prefer manual installation
 
-- `git clone https://github.com/khilnani/gists.cli` or download the latest Tag Archive from https://github.com/khilnani/gists.cli
+- `git clone https://github.com/khilnani/gists.cli.git` or download the latest Tag Archive from https://github.com/khilnani/gists.cli
 - Run the installer
   - `./install.py` with no arguments will install to `/usr/local/bin`.
   - `./install.py INSTALL_PATH` to install to a specific directory.
