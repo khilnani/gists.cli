@@ -11,15 +11,17 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 Installation
 ============
 
-If you have Python PIP http://www.pip-installer.org/ Installed
+Recomended installation process
 
-- `pip install gists.cli`
+- Install the Python package manager PIP (http://www.pip-installer.org/) `sudo easy_install pip`
+- Once PIP is installed, run `pip install gists.cli`
 
-If you prefer manual installation
+If you would like to develop or make changes to the code base
 
 - `git clone https://github.com/khilnani/gists.cli.git` or download the latest Tag Archive from https://github.com/khilnani/gists.cli
-- Install dependencies by running `./setup.sh`. If you get an error, run `sudo ./setup.sh`
-- Run the installer as below. Again if you get any error run with `sudo ...`
+- Install dependencies by running `./setup.sh`. 
+  - This installs PIP (if not already installed) and then installs the dependencies.
+- Run the installer as below. Again, if you get any error run with `sudo ...`
   - `./install.py` with no arguments will install to `/usr/local/bin`.
   - `./install.py INSTALL_PATH` to install to a specific directory.
 
