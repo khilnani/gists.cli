@@ -3,7 +3,7 @@ GistCommand
 
 > I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
 
-GistCommand - A CLI to create, edit, view and list gists. https://github.com/khilnani/gistcommand/
+GistCommand - An easy to use CLI to create, edit, view and list gists. https://github.com/khilnani/gistcommand/
 
 Installation
 ============
@@ -16,8 +16,8 @@ If you prefer manual installation
 
 - `git clone https://github.com/khilnani/gistcommand.git` or download the latest Tag Archive from https://github.com/khilnani/gistcommand
 - Run the installer
-  - `./install.py` with no arguments will install to `/usr/local/bin`
-  - `./install.py INSTALL_PATH` to install to a specific directory
+  - `./install.py` with no arguments will install to `/usr/local/bin`.
+  - `./install.py INSTALL_PATH` to install to a specific directory.
 
 Usage
 =========
@@ -32,10 +32,17 @@ Authentication
 Usage
 ---------
 
-- `gists` - list your Gists
-- `gists ID` - view Gist with ID on the console
-- `gists ID PATH` - download Gist with ID to PATH
-- `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `.gists`
+- `gists` - list your Gists.
+- `gists ID` - view Gist with ID on the console.
+- `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation/
+- `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `.gists`.
+
+Tips
+---------
+
+- Add `debug|d` at the end of any execution to view low level details. eg. `gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
+- Add `supress|silent|s` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. eg. `gists ID supress`. *This option cannot be used with `debug` as that would be silly.*
+
 
 In Development
 ==============
@@ -50,6 +57,6 @@ In Development
 Issues and Roadmap
 ==================
 
-- Take a look at https://github.com/khilnani/gistcommand/issues to view Issues and Milestones
+- Take a look at https://github.com/khilnani/gistcommand/issues to view Issues and Milestones.
 
 
