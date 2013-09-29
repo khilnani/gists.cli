@@ -24,7 +24,7 @@ If you would like to develop or make changes to the code base
   - This installs PIP (if not already installed) and then installs the dependencies.
 - Run the installer as below. Again, if you get any error run with `sudo ...`
   - `./install.py` with no arguments will install to `/usr/local/bin`.
-  - `./install.py INSTALL_PATH` to install to a specific directory.
+  - `./install.py INSTALL_PATH` will install to a specific directory.
 
 Usage
 =========
