@@ -14,7 +14,7 @@ If you have [Python PIP](http://www.pip-installer.org/) Installed
 
 If you prefer manual installation
 
-- `git clone https://github.com/khilnani/gistcommand.git` or download the latest Tag Archive from (https://github.com/khilnani/gistcommand)
+- `git clone https://github.com/khilnani/gistcommand.git` or download the latest Tag Archive from [https://github.com/khilnani/gistcommand](https://github.com/khilnani/gistcommand)
 - Run the installer
   - `./install.py` with no arguments will install to `/usr/local/bin`
   - `./install.py INSTALL_PATH` to install to a specific directory
