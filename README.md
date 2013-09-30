@@ -19,10 +19,11 @@ Recomended installation process
 
 If you would like to contribute changes to the code base
 
-- get the code
+- Get the code
   - Fork and `git clone` the fork, or ...
   - `git clone https://github.com/khilnani/gists.cli.git`, or ...
-  - Download the latest Tag Archive from https://github.com/khilnani/gists.cli . *Not recommended, since it won't be easy to merge code back in*.
+  - Download the latest Tag Archive from https://github.com/khilnani/gists.cli .
+    - *Downloading the Archive is not recommended, since it won't be easy to merge code back*.
 - Install dependencies by running `./setup.sh`. 
   - This installs PIP (if not already installed) and then installs the dependencies.
 - Run the installer as below. If you get any error run with `sudo ...`
