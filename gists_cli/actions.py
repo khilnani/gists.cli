@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys, api, log, util
+import sys, api, log, util, os
 
 #-------------------------------------------
 
@@ -84,8 +84,41 @@ def view (id):
 
 def get (id, path):
   log.debug ("Get: %s, %s" % (id, path))
+
+  if not os.path.isdir(path):
+    confirm = raw_input ('Directory \'{}\' does not exist. Create? (y/n): '.format(path))
+    if confirm == 'y':
+      pass
+    else:
+      print 'Ok. I won\'t download the Gist.'
+      return None
+
   gist = _get_gist(id)
-  print "Downloading Gist %s files to '%s'" % (id, path)
+  target = os.path.join(path,id)
+
+  print ('Gist \'{}\' has {} file(s)'.format(id, len(gist['files'])))
+  for file in gist['files']:
+    print ('  ' + file)
+  print ''
+  confirm = raw_input ("Download to '{}'? (y/n): ".format(target))
+  if confirm == 'y':
+    try:
+      if not os.path.isdir(path):
+        os.makedirs(path)
+      os.makedirs(target)
+      for (file, data) in gist['files'].items():
+        content = data['content']
+        filepath = os.path.join(target,file)
+        file = open( filepath , 'w')
+        file.write(content)
+        file.close()
+        log.debug( 'Wrote file:' + filepath )
+    except Exception as e:
+      print "Insufficient privilages to write to %s." % target
+      print "Error message: " + str(e)
+  else:
+    pass
+
 
 #-------------------------------------------
 
