@@ -99,7 +99,6 @@ def get (id, path):
   print ('Gist \'{}\' has {} file(s)'.format(id, len(gist['files'])))
   for file in gist['files']:
     print ('  ' + file)
-  print ''
   confirm = raw_input ("Download to '{}'? (y/n): ".format(target))
   if confirm == 'y':
     try:
@@ -113,6 +112,7 @@ def get (id, path):
         file.write(content)
         file.close()
         log.debug( 'Wrote file:' + filepath )
+      print 'Download complete.'
     except Exception as e:
       print "Insufficient privilages to write to %s." % target
       print "Error message: " + str(e)
