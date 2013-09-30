@@ -17,9 +17,12 @@ Recomended installation process
   - Run `sudo easy_install pip`
 - Once PIP is installed, run `pip install gists.cli`
 
-If you would like to develop or make changes to the code base
+If you would like to contribute changes to the code base
 
-- `git clone https://github.com/khilnani/gists.cli.git` or download the latest Tag Archive from https://github.com/khilnani/gists.cli
+- get the code
+  - Fork and `git clone` the fork, or ...
+  - `git clone https://github.com/khilnani/gists.cli.git`, or ...
+  - Download the latest Tag Archive from https://github.com/khilnani/gists.cli . *Not recommended, since it won't be easy to merge code back in*.
 - Install dependencies by running `./setup.sh`. 
   - This installs PIP (if not already installed) and then installs the dependencies.
 - Run the installer as below. If you get any error run with `sudo ...`
