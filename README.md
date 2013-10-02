@@ -52,8 +52,8 @@ Tips
 ---------
 
 - Add `debug|d` at the end of any execution to view low level details. eg. `gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
-- Add `supress|silent|s` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. eg. `gists ID supress`. 
-  - *This option cannot be used with `debug` as that would be silly.*
+- Add `supress|silent|s` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. 
+  - eg. `gists create ID supress debug`. 
 
 
 In Development
