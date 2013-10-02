@@ -75,7 +75,7 @@ In Development
 - `gists delete|d ID` - Delete a Gist.
 - `gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
 - `gists backup|b` - Backup all Gists in the user's account.
-- `gists search|q QUERY` - Search Gists.
+- `gists search|query|q QUERY` - Search Gists.
 
 Issues and Roadmap
 ==================
