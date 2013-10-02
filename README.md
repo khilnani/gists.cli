@@ -43,22 +43,36 @@ Authentication
 Usage
 ---------
 
+List all your Gists
+
 - `gists` - list your Gists.
+
+View a Gist
+
 - `gists ID` - view Gist with ID on the console.
 - `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
+
+Setup OAuth token
+
 - `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
-- `gists new|n|create|c [PARAMS]` - Create a new Gist. Content sent via Console, Clipboard or File.
-  > FILE - is a file path, relative or absolute.
-  > Bool - True, False, 1, 0, Yes, No, y, n. Case-insensitive
-  > Description and Content - Text content within quotes
-  - `gists new|n|create|c FILE`
-  - `gists new|n|create|c "Content"`
-  - `gists new|n|create|c Bool FILE`
-  - `gists new|n|create|c Bool "Content"`
-  - `gists new|n|create|c "Description" FILE`
-  - `gists new|n|create|c "Description" "Content"`
-  - `gists new|n|create|c Bool "Description" FILE`
-  - `gists new|n|create|c Bool "Description" "Content"`
+
+Create a Gist
+
+> FILE - is a file path, relative or absolute.
+> Bool - True, False, 1, 0, Yes, No, y, n. Case-insensitive
+> Description and Content - Text content within quotes
+
+- `gists FILE`
+- `gists Content`
+
+- `gists new|n|create|c FILE`
+- `gists new|n|create|c "Content"`
+- `gists new|n|create|c Bool FILE`
+- `gists new|n|create|c Bool "Content"`
+- `gists new|n|create|c "Description" FILE`
+- `gists new|n|create|c "Description" "Content"`
+- `gists new|n|create|c Bool "Description" FILE`
+- `gists new|n|create|c Bool "Description" "Content"`
 
 Tips
 ---------
