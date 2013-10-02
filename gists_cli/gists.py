@@ -37,7 +37,7 @@ def main ( ):
 
     """ ---------------------------------------
     cmd args = 0:
-      create
+      create (always prompts, even if slient mode since no data is sent)
       ID
       token|t
     """
