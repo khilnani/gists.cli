@@ -51,11 +51,7 @@ def main ( ):
     else:
       """ -----------------------------------------
       cmd args = 1+:
-         create CONTENT
-         create FILE
-         create private
-         create private CONTENT
-         create private FILE
+         create Boolean Description File/Content
          append ID
          update ID
          delete ID
@@ -63,21 +59,24 @@ def main ( ):
       """
       if cmd in ("new", "n", "create", "c"):
         if len(args) == 1:
-          # check if the arg is a Boolean, File or Content
-          if util.parseBool(args[0]) != None:
-            actions.create( public = util.parseBool(args[0]) )
-          elif util.isFileOrDir(args[0]) == True:
+          # check if the arg is File or Content
+          # Each option will prompt for public/pvt and description. In silent mode, assumes private and no description.
+          # arg could be:
+          #   create File
+          #   create Content
+          if util.isFileOrDir(args[0]) == True:
             actions.create( filename = args[0] )
           else:
             actions.create( content = args[0] )
         elif len(args) > 1: 
+          # Each option will prompt for public/pvt and description. In silent mode, assumes private and no description.
           # args could be:
-          #   Boolean and File
-          #   Boolean and Content
-          #   Description and File
-          #   Description and Content
-          #   Boolean, Description and File
-          #   Boolean, Description and Content
+          #   create Boolean and File
+          #   create Boolean and Content
+          #   create Description and File 
+          #   create Description and Content 
+          #   create Boolean, Description and File
+          #   create Boolean, Description and Content
           actions.create( )
       elif cmd in ("append", "a"):
         actions.append( args[0] )
