@@ -13,6 +13,9 @@ def debug (obj):
   if enabled:
     print '[' + str(datetime.now()) + ']: ' + str(obj)
 
+def error (obj):
+  print 'ERROR: ' + str(obj)
+
 if sys.argv[-1] in ('debug'):
   enabled = True
   del sys.argv[-1]

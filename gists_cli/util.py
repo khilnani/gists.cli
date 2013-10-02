@@ -1,20 +1,50 @@
 #!/usr/bin/env python
 
-import os
+import os, log
 
-def parseBool( obj ):
+def readFile (filename):
+  content = None
+  if filename != None and os.path.exists(filename):
+    try:
+      file = open(filename)
+      content = file.read()
+      file.close()
+    except Exception as e:
+      log.error ("Unable to read file '{}'.".format(filename))
+  return content
+
+
+def readConsole(prompt='Please type/paste content:', required=True, bool=False):
+  content = raw_input(prompt)
+  if len( content.strip() ) == 0 and required == True:
+    content = readConsole (prompt, required, bool)
+  if bool:
+    if parseBool(content) == None:
+      content = readConsole (prompt, required, bool)
+  return content
+
+
+def parseBool (obj):
   obj_str = str(obj).strip().lower()
   if obj == True or obj == 1:
     return True
   if obj == False or obj == 0:
     return False
-  if obj_str in ("true", "yes", "1"):
+  if obj_str in ("true", "yes", "1", "y"):
     return True
-  if obj_str in ("false", "no", "0"):
+  if obj_str in ("false", "no", "0", "n"):
     return False
   return None
 
-def isFile( obj ):
+def isFileOrDir (obj):
+  obj_str = str(obj)
+  if ' ' in obj_str:
+    return False
+  elif os.path.isfile(obj_str) or os.path.isdir(obj_str):
+    return True
+  return False
+
+def isFile (obj):
   obj_str = str(obj)
   if ' ' in obj_str:
     return False
@@ -22,7 +52,7 @@ def isFile( obj ):
     return True
   return False
 
-def line(msg=""):
+def line (msg=""):
   print "---------------------------------------------------------------------------------------------" + msg
 
 if __name__ == '__main__':

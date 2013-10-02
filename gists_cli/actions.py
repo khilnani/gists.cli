@@ -35,9 +35,39 @@ def list ():
 
 #-------------------------------------------
 
-def create (public=False,content=None,filename=None):
+def create (public=None,description=None,content=None,filename=None):
   api.getCredentials()
   log.debug ("Command: Create: " + str(public) + ", " + str(filename) + ", " + str(content))
+
+  if public == None:
+    public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True) )
+
+  if description == None:
+    description = util.readConsole(prompt='Description:', required=False)
+
+  if content == None and filename != None:
+    if os.path.isfile( filename ):
+      content = util.readFile(filename)
+    else:
+      print "Sorry, filename '{}' is actually a Directory.".format(filename)
+      sys.exit(0)
+
+  if content == None:
+    content = util.readConsole()
+
+  if filename == None:
+    filename = 'file.md'
+
+  log.debug ("Creating Gist using content: \n" + content)
+
+  url = '/gists'
+  data = {'public': str(public).lower(), 'description': description, 'files': { os.path.basename(filename): { 'content': content } } }
+  log.debug ('Data: ' + str(data))
+
+  gist = api.post(url, data=data)
+
+  print "Gist created with Id: {} and Url: {}".format(gist['id'], gist['html_url'])
+
 
 #-------------------------------------------
 
@@ -70,7 +100,7 @@ def _get_gist(id):
 #-------------------------------------------
 
 def view (id):
-  log.debug ("Command: View: " + id)
+  print ("Fetching Gist with Id '%s'." % id)
   gist = _get_gist(id)
   for (file, data) in gist['files'].items():
     content = data['content']
@@ -83,7 +113,7 @@ def view (id):
 #-------------------------------------------
 
 def get (id, path):
-  log.debug ("Get: %s, %s" % (id, path))
+  print ("Downloading Gist with Id '%s' to '%s'." % (id, path))
 
   if not os.path.isdir(path):
     confirm = raw_input ('Directory \'{}\' does not exist. Create? (y/n): '.format(path))

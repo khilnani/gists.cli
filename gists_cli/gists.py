@@ -66,12 +66,18 @@ def main ( ):
           # check if the arg is a Boolean, File or Content
           if util.parseBool(args[0]) != None:
             actions.create( public = util.parseBool(args[0]) )
-          elif util.isFile(args[0]) == True:
+          elif util.isFileOrDir(args[0]) == True:
             actions.create( filename = args[0] )
           else:
             actions.create( content = args[0] )
         elif len(args) > 1: 
-          # args could be boolean and File, or Boolean and Content
+          # args could be:
+          #   Boolean and File
+          #   Boolean and Content
+          #   Description and File
+          #   Description and Content
+          #   Boolean, Description and File
+          #   Boolean, Description and Content
           actions.create( )
       elif cmd in ("append", "a"):
         actions.append( args[0] )
