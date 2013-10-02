@@ -43,27 +43,32 @@ Authentication
 Usage
 ---------
 
-List all your Gists
+**List all your Gists**
 
 - `gists` - list your Gists.
 
-View a Gist
+**View a Gist**
 
 - `gists ID` - view Gist with ID on the console.
 - `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
 
-Setup OAuth token
+**Setup OAuth token**
 
 - `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
-Create a Gist
+**Create a Gist**
 
 > FILE - is a file path, relative or absolute.
 > Bool - True, False, 1, 0, Yes, No, y, n. Case-insensitive
 > Description and Content - Text content within quotes
 
+Without specifying a command, the application will trying to figure it out. However, this supports fewer combinations of arguments.
+
 - `gists FILE`
 - `gists Content`
+
+With the create command specified. A much more comprehensive set of argument combinations.
+
 - `gists new|n|create|c FILE`
 - `gists new|n|create|c "Content"`
 - `gists new|n|create|c Bool FILE`
