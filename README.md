@@ -52,18 +52,19 @@ Tips
 ---------
 
 - Add `debug|d` at the end of any execution to view low level details. eg. `gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
-- Add `supress|silent|s` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. eg. `gists ID supress`. *This option cannot be used with `debug` as that would be silly.*
+- Add `supress|silent|s` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. eg. `gists ID supress`. 
+  - *This option cannot be used with `debug` as that would be silly.*
 
 
 In Development
 ==============
 
-- `gists new|n|create|c` - Create a new Gist. Content sent via Console, Clipboard or File.
-- `gists update|u ID` - Update a Gist. Content sent via Console, Clipboard or File.
+- `gists new|n|create|c [PARAMS]` - Create a new Gist. Content sent via Console, Clipboard or File.
+- `gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
 - `gists delete|d ID` - Delete a Gist.
-- `gists append|a ID` - Append to a Gist. Content sent via Console, Clipboard or File.
+- `gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
 - `gists backup|b` - Backup all Gists in the user's account.
-- `gists search|s QUERY` - Search Gists.
+- `gists search|q QUERY` - Search Gists.
 
 Issues and Roadmap
 ==================
