@@ -43,6 +43,9 @@ Authentication
 Usage
 ---------
 
+*All the commands below are interactive and will prompt for user input.*
+*To suppress the interactivity, use the 'suppress' command. See the 'Tips' section for more info.*
+
 **List all your Gists**
 
 - `./gists` - list your Gists.
@@ -62,10 +65,11 @@ Usage
 > Bool - True, False, 1, 0, Yes, No, y, n. Case-insensitive
 > Description and Content - Text content within quotes
 
+
 Without specifying a command (eg. create, new), the application will trying to figure it out. However, this supports fewer combinations of arguments.
 
 - `./gists FILE`
-- `./gists Content`
+- `./gists "Content"`
 
 With the create command specified. A much more comprehensive set of argument combinations.
 
