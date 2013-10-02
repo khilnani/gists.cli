@@ -45,16 +45,16 @@ Usage
 
 **List all your Gists**
 
-- `gists` - list your Gists.
+- `./gists` - list your Gists.
 
 **View a Gist**
 
-- `gists ID` - view Gist with ID on the console.
-- `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
+- `./gists ID` - view Gist with ID on the console.
+- `./gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
 
 **Setup OAuth token**
 
-- `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
+- `./gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 **Create a Gist**
 
@@ -64,36 +64,36 @@ Usage
 
 Without specifying a command (eg. create, new), the application will trying to figure it out. However, this supports fewer combinations of arguments.
 
-- `gists FILE`
-- `gists Content`
+- `./gists FILE`
+- `./gists Content`
 
 With the create command specified. A much more comprehensive set of argument combinations.
 
-- `gists new|n|create|c FILE`
-- `gists new|n|create|c "Content"`
-- `gists new|n|create|c Bool FILE`
-- `gists new|n|create|c Bool "Content"`
-- `gists new|n|create|c "Description" FILE`
-- `gists new|n|create|c "Description" "Content"`
-- `gists new|n|create|c Bool "Description" FILE`
-- `gists new|n|create|c Bool "Description" "Content"`
+- `./gists new|n|create|c FILE`
+- `./gists new|n|create|c "Content"`
+- `./gists new|n|create|c Bool FILE`
+- `./gists new|n|create|c Bool "Content"`
+- `./gists new|n|create|c "Description" FILE`
+- `./gists new|n|create|c "Description" "Content"`
+- `./gists new|n|create|c Bool "Description" FILE`
+- `./gists new|n|create|c Bool "Description" "Content"`
 
 Tips
 ---------
 
-- Add `debug|d` at the end of any execution to view low level details. eg. `gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
+- Add `debug|d` at the end of any execution to view low level details. eg. `./gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
 - Add `supress|silent|s` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. 
-  - eg. `gists create ID supress debug`. 
+  - eg. `./gists create FILE supress debug`. 
 
 
 In Development
 ==============
 
-- `gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
-- `gists delete|del|d ID` - Delete a Gist.
-- `gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
-- `gists backup|b` - Backup all Gists in the user's account.
-- `gists search|query|q QUERY` - Search Gists.
+- `./gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
+- `./gists delete|del|d ID` - Delete a Gist.
+- `./gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
+- `./gists backup|b` - Backup all Gists in the user's account.
+- `./gists search|query|q QUERY` - Search Gists.
 
 Issues and Roadmap
 ==================
