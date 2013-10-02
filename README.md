@@ -62,7 +62,7 @@ Usage
 > Bool - True, False, 1, 0, Yes, No, y, n. Case-insensitive
 > Description and Content - Text content within quotes
 
-Without specifying a command, the application will trying to figure it out. However, this supports fewer combinations of arguments.
+Without specifying a command (eg. create, new), the application will trying to figure it out. However, this supports fewer combinations of arguments.
 
 - `gists FILE`
 - `gists Content`
