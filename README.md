@@ -64,7 +64,6 @@ Create a Gist
 
 - `gists FILE`
 - `gists Content`
-
 - `gists new|n|create|c FILE`
 - `gists new|n|create|c "Content"`
 - `gists new|n|create|c Bool FILE`
@@ -86,7 +85,7 @@ In Development
 ==============
 
 - `gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
-- `gists delete|d ID` - Delete a Gist.
+- `gists delete|del|d ID` - Delete a Gist.
 - `gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
 - `gists backup|b` - Backup all Gists in the user's account.
 - `gists search|query|q QUERY` - Search Gists.
