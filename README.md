@@ -47,6 +47,18 @@ Usage
 - `gists ID` - view Gist with ID on the console.
 - `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
 - `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
+- `gists new|n|create|c [PARAMS]` - Create a new Gist. Content sent via Console, Clipboard or File.
+  > FILE - is a file path, relative or absolute.
+  > Bool - True, False, 1, 0, Yes, No, y, n. Case-insensitive
+  > Description and Content - Text content within quotes
+  - `gists new|n|create|c FILE`
+  - `gists new|n|create|c "Content"`
+  - `gists new|n|create|c Bool FILE`
+  - `gists new|n|create|c Bool "Content"`
+  - `gists new|n|create|c "Description" FILE`
+  - `gists new|n|create|c "Description" "Content"`
+  - `gists new|n|create|c Bool "Description" FILE`
+  - `gists new|n|create|c Bool "Description" "Content"`
 
 Tips
 ---------
@@ -59,7 +71,6 @@ Tips
 In Development
 ==============
 
-- `gists new|n|create|c [PARAMS]` - Create a new Gist. Content sent via Console, Clipboard or File.
 - `gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
 - `gists delete|d ID` - Delete a Gist.
 - `gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.

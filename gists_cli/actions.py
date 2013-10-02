@@ -37,7 +37,7 @@ def list ():
 
 def create (public=None,description=None,content=None,filename=None):
   api.getCredentials()
-  log.debug ("Command: Create: " + str(public) + ", " + str(filename) + ", " + str(content))
+  log.debug ("Command: Create: public: '{}' description: '{}' filename: '{}' content: '{}'.".format(str(public), str(description), str(filename), str(content)))
 
   if public == None:
     public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True) )
@@ -66,7 +66,8 @@ def create (public=None,description=None,content=None,filename=None):
 
   gist = api.post(url, data=data)
 
-  print "Gist created with Id: {} and Url: {}".format(gist['id'], gist['html_url'])
+  pub_str = 'Public' if gist['public'] else 'Private'
+  print "{} Gist created with Id '{}' and Url: {}".format(pub_str, gist['id'], gist['html_url'])
 
 
 #-------------------------------------------

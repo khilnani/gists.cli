@@ -3,6 +3,7 @@
 import os, log
 
 def readFile (filename):
+  log.debug ("readFile: " + str(filename))
   content = None
   if filename != None and os.path.exists(filename):
     try:
@@ -25,6 +26,7 @@ def readConsole(prompt='Please type/paste content:', required=True, bool=False):
 
 
 def parseBool (obj):
+  log.debug ("parseBool: " + str(obj))
   obj_str = str(obj).strip().lower()
   if obj == True or obj == 1:
     return True
@@ -37,6 +39,7 @@ def parseBool (obj):
   return None
 
 def isFileOrDir (obj):
+  log.debug ("isFileOrDir: " + str(obj))
   obj_str = str(obj)
   if ' ' in obj_str:
     return False
@@ -45,6 +48,7 @@ def isFileOrDir (obj):
   return False
 
 def isFile (obj):
+  log.debug ("isFile: " + str(obj))
   obj_str = str(obj)
   if ' ' in obj_str:
     return False
