@@ -44,7 +44,7 @@ Usage
 ---------
 
 *All the commands below are interactive and will prompt for user input.*
-*To suppress the interactivity, use the 'suppress' command. See the 'Tips' section for more info.*
+*To suppress interactivity, use the 'suppress' command. See the 'Tips' section for more info.*
 
 **List all your Gists**
 
