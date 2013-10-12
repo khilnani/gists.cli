@@ -70,6 +70,13 @@ Without specifying a command (eg. create, new), the application will trying to f
 
 - `./gists FILE`
 - `./gists "Content"`
+- `./gists Bool FILE`
+- `./gists Bool "Content"`
+- `./gists "Description" FILE`
+- `./gists "Description" "Content"`
+- `./gists Bool "Description" FILE`
+- `./gists Bool "Description" "Content"`
+
 
 With the create command specified. A much more comprehensive set of argument combinations.
 
