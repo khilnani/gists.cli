@@ -78,7 +78,7 @@ Without specifying a command (eg. create, new), the application will trying to f
 - `./gists Bool "Description" "Content"`
 
 
-With the create command specified. A much more comprehensive set of argument combinations.
+If you like to type, or be specific - with the create command specified:
 
 - `./gists new|n|create|c FILE`
 - `./gists new|n|create|c "Content"`
