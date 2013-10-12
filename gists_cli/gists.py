@@ -4,6 +4,10 @@ import sys, actions, log, util
 
 #-------------------------------------------
 
+_supress = False
+
+#-------------------------------------------
+
 def _hasCmd( args ):
   log.debug ("_hasCmd: " + str(args))
   if len(args) > 0:
@@ -17,6 +21,7 @@ def _hasCmd( args ):
       return False
     # Cmd: is cmd one of the known commands
     if str(cmd).strip().lower() in ("list","l","token", "t", "view", "v", "get", "g", "create", "c", "new", "n", "append", "a", "update", "u", "delete", "del", "d", "backup", "b", "search", "query", "q"):
+      log.debug ("_hasCmd: Found")
       return True
   return False
 
@@ -65,7 +70,12 @@ def _printNoMatch():
 
 def main ( ):
 
+  global _supress
+
   print ''
+
+  log.setDebug( util.argv(["debug"]) )
+  actions.supress( util.argv(["s", "silent","supress"]) )
 
   args = sys.argv
   

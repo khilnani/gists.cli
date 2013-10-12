@@ -1,6 +1,17 @@
 #!/usr/bin/env python
 
-import os, log
+import os, log, sys
+
+def argv ( ids ):
+# print ("util.argv: " + str(ids))
+  for i in range(len(sys.argv)):
+    if sys.argv[i] in ids:
+      del sys.argv[i]
+      # print "util.argv True"
+      return True
+  # print "util.argv False"
+  return False
+
 
 def readFile (filename):
   log.debug ("readFile: " + str(filename))

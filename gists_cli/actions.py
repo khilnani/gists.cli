@@ -1,6 +1,18 @@
 #!/usr/bin/env python
 
-import sys, api, log, util, os
+import sys, api, log, util, os, defaults
+
+#-------------------------------------------
+
+_supress = False
+
+#-------------------------------------------
+
+def supress( s ):
+  global _supress
+  _supress = s
+  log.debug ("_supress: " + str(_supress))
+
 
 #-------------------------------------------
 
@@ -40,10 +52,16 @@ def create (public=None,description=None,content=None,filename=None):
   log.debug ("Command: Create: public: '{}' description: '{}' filename: '{}' content: '{}'.".format(str(public), str(description), str(filename), str(content)))
 
   if public == None:
-    public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True) )
+    if _supress:
+      public = defaults.public
+    else:
+      public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True) )
 
   if description == None:
-    description = util.readConsole(prompt='Description:', required=False)
+    if _supress:
+      description = defaults.description
+    else:
+      description = util.readConsole(prompt='Description:', required=False)
 
   if content == None and filename != None:
     if os.path.isfile( filename ):
@@ -53,7 +71,10 @@ def create (public=None,description=None,content=None,filename=None):
       sys.exit(0)
 
   if content == None:
-    content = util.readConsole()
+    if _supress:
+      content = defaults.content
+    else:
+      content = util.readConsole()
 
   if filename == None:
     filename = 'file.md'

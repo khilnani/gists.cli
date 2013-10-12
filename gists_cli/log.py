@@ -5,17 +5,19 @@ from datetime import datetime
 
 #-------------------------------------------
 
-enabled = False
+debugEnabled = False
+
+def setDebug (debug):
+  global debugEnabled
+  debugEnabled = debug
+
 def comment (obj):
   print '>> ' + str(obj)
 
 def debug (obj):
-  if enabled:
+  if debugEnabled:
     print '[' + str(datetime.now()) + ']: ' + str(obj)
 
 def error (obj):
   print 'ERROR: ' + str(obj)
 
-if sys.argv[-1] in ('debug'):
-  enabled = True
-  del sys.argv[-1]
