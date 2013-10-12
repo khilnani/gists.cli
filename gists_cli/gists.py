@@ -41,22 +41,19 @@ def _deriveCmd( args ):
       # create 'Content'
       cmd = "create"
   elif alen == 2:
-    if str(args[0]).strip().isalnum():
+    if str(args[0]).strip().isalnum() and util.parseBool( args[0] ) == None:
       # get ID 'Dir'
       cmd =  "get"
+    else:
       # create Boolean and File
-    
       # create Boolean and Content
-    
       # create Description and File
-    
       # create Description and Content
-  elif alen == 3:
+      cmd = "create"
+  elif alen == 3 and util.parseBool( args[0] ) != None:
       # create Boolean, Description and File
-    
       # create Boolean, Description and Content
-    
-    pass
+      cmd = "create"
   return cmd
 
 #-------------------------------------------

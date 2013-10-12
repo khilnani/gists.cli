@@ -114,15 +114,7 @@ def view (id):
 #-------------------------------------------
 
 def get (id, path):
-  print ("Downloading Gist with Id '%s' to '%s'." % (id, path))
-
-  if not os.path.isdir(path):
-    confirm = raw_input ('Directory \'{}\' does not exist. Create? (y/n): '.format(path))
-    if confirm == 'y':
-      pass
-    else:
-      print 'Ok. I won\'t download the Gist.'
-      return None
+  log.debug ("Downloading Gist with Id '%s' to '%s'." % (id, path))
 
   gist = _get_gist(id)
   target = os.path.join(path,id)
@@ -148,7 +140,7 @@ def get (id, path):
       print "Insufficient privilages to write to %s." % target
       print "Error message: " + str(e)
   else:
-    pass
+    print 'Ok. I won\'t download the Gist.'
 
 
 #-------------------------------------------
