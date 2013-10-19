@@ -1,0 +1,249 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Gists.cli by khilnani</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Gists.cli</h1>
+        <p>Python based CLI to manage your Gists.</p>
+
+        <p class="view"><a href="https://github.com/khilnani/gists.cli">View the Project on GitHub <small>khilnani/gists.cli</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/khilnani/gists.cli/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/khilnani/gists.cli/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/khilnani/gists.cli">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="gistscli" class="anchor" href="#gistscli"><span class="octicon octicon-link"></span></a>Gists.cli</h1>
+
+<blockquote>
+<p>I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. </p>
+</blockquote>
+
+<p>An easy to use CLI to manage <em>your</em> GitHub Gists. Create, edit, append, view, search and download. </p>
+
+<ul>
+<li>Github - <a href="https://github.com/khilnani/gists.cli">https://github.com/khilnani/gists.cli</a> </li>
+<li>Python Package - <a href="https://pypi.python.org/pypi/gists.cli">https://pypi.python.org/pypi/gists.cli</a>
+</li>
+</ul><h1>
+<a name="for-the-casual-user" class="anchor" href="#for-the-casual-user"><span class="octicon octicon-link"></span></a>For the Casual User</h1>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ul>
+<li>Install the Python package manager PIP (<a href="http://www.pip-installer.org/">http://www.pip-installer.org/</a>)
+
+<ul>
+<li>Run <code>sudo easy_install pip</code>
+</li>
+</ul>
+</li>
+<li>Once PIP is installed, 
+
+<ul>
+<li>Run <code>sudo pip install gists.cli</code>
+</li>
+<li>Run <code>sudo pip install gists.cli --upgrade</code> if upgrading.</li>
+</ul>
+</li>
+</ul><h2>
+<a name="authentication" class="anchor" href="#authentication"><span class="octicon octicon-link"></span></a>Authentication</h2>
+
+<ul>
+<li>By default the application will attempt to use Basic Auth to authenticate i.e. will prompt for username/password each time it is run.</li>
+<li>If the file <code>~/.git-credentials</code> is available, it will use the first OAuth token entry. </li>
+<li>If the file  <code>~/.gists</code> with a Github OAuth token is found, it will be given preference over the above two mechanisms.</li>
+<li>Run <code>./gists token|t</code> to avoid the username/password prompt and to use an OAuth Token other than <code>~/.git-credentials</code>. Saves to <code>~/.gists</code>.</li>
+</ul><h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p><em>All the commands below are interactive and will prompt for user input (eg. public/private, descriptions) and confirmations (eg. directory creation).</em></p>
+
+<p><strong>List all your Gists</strong></p>
+
+<ul>
+<li><code>./gists</code></li>
+</ul><p><strong>View a Gist</strong></p>
+
+<ul>
+<li>
+<code>./gists ID</code> - View Gist with ID on the console.</li>
+<li>
+<code>./gists ID PATH</code> - Download Gist files with ID to PATH. Will prompt for confirmation.</li>
+</ul><p><strong>Create a Gist</strong></p>
+
+<p>We'll prompt for stuff like Gist type (public/private), Description and Gist Content as needed.</p>
+
+<ul>
+<li>
+<code>./gists new</code> or <code>./gists create</code>
+</li>
+<li>
+<code>./gists FILE</code> - Create a Gist using the contents of FILE</li>
+<li>
+<code>./gists "Content"</code> - Create a Gist using the string "Content"</li>
+</ul><p>To avoid the Public/private Gist type prompt -</p>
+
+<blockquote>
+<p>Bool should be <code>true</code> for Public, <code>false</code> for Private</p>
+</blockquote>
+
+<ul>
+<li><code>./gists Bool FILE</code></li>
+<li><code>./gists Bool "Content"</code></li>
+</ul><h1>
+<a name="for-the-advanced-user" class="anchor" href="#for-the-advanced-user"><span class="octicon octicon-link"></span></a>For The Advanced User</h1>
+
+<h2>
+<a name="usage-1" class="anchor" href="#usage-1"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p><em>All the commands below are interactive and will prompt for user input.</em>
+<em>To suppress interactivity, simple include the word 'suppress', 'silent' or 's'. See the 'Tips' section for more info.</em></p>
+
+<p><strong>List all your Gists</strong></p>
+
+<ul>
+<li>
+<code>./gists</code> - list your Gists.</li>
+</ul><p><strong>View a Gist</strong></p>
+
+<ul>
+<li>
+<code>./gists ID</code> - view Gist with ID on the console.</li>
+<li>
+<code>./gists ID PATH</code> - download Gist files with ID to PATH. Will prompt for confirmation.</li>
+</ul><p><strong>Setup OAuth token</strong></p>
+
+<ul>
+<li>
+<code>./gists token|t</code> - setup to use OAuth Token other than <code>~/.git-credentials</code>. Saves to <code>~/.gists</code>.</li>
+</ul><p><strong>Create a Gist</strong></p>
+
+<blockquote>
+<ul>
+<li>FILE - is a file path, relative or absolute.</li>
+<li>Bool - True for Public, False for Private. Supports True, False, 1, 0, Yes, No, y, n. Case-insensitive</li>
+<li>Description and Content - Text content within quotes</li>
+</ul>
+</blockquote>
+
+<p>Without specifying a command (eg. create, new), the application will trying to figure it out. However, this supports fewer combinations of arguments.</p>
+
+<ul>
+<li><code>./gists FILE</code></li>
+<li><code>./gists "Content"</code></li>
+<li><code>./gists Bool FILE</code></li>
+<li><code>./gists Bool "Content"</code></li>
+<li><code>./gists "Description" FILE</code></li>
+<li><code>./gists "Description" "Content"</code></li>
+<li><code>./gists Bool "Description" FILE</code></li>
+<li><code>./gists Bool "Description" "Content"</code></li>
+</ul><p>If you like to type, or be specific (will prompt for stuff like Gist type, Description and Gist Content etc as needed).</p>
+
+<ul>
+<li><code>./gists new|n|create|c</code></li>
+<li><code>./gists new|n|create|c FILE</code></li>
+<li><code>./gists new|n|create|c "Content"</code></li>
+<li><code>./gists new|n|create|c Bool FILE</code></li>
+<li><code>./gists new|n|create|c Bool "Content"</code></li>
+<li><code>./gists new|n|create|c "Description" FILE</code></li>
+<li><code>./gists new|n|create|c "Description" "Content"</code></li>
+<li><code>./gists new|n|create|c Bool "Description" FILE</code></li>
+<li><code>./gists new|n|create|c Bool "Description" "Content"</code></li>
+</ul><h1>
+<a name="for-the-developer" class="anchor" href="#for-the-developer"><span class="octicon octicon-link"></span></a>For the Developer</h1>
+
+<h2>
+<a name="installation-1" class="anchor" href="#installation-1"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>If you would like to contribute changes to the code base</p>
+
+<ul>
+<li>Get the code
+
+<ul>
+<li>Fork and <code>git clone</code> the fork, or ...</li>
+<li>
+<code>git clone https://github.com/khilnani/gists.cli.git</code>, or ...</li>
+<li>Download the latest Tag Archive from <a href="https://github.com/khilnani/gists.cli">https://github.com/khilnani/gists.cli</a><br>
+</li>
+<li>
+<em>Downloading the Archive is not recommended, since it won't be easy to merge code back</em>.</li>
+</ul>
+</li>
+<li>Install dependencies by running <code>./setup.sh</code>. 
+
+<ul>
+<li>This installs PIP (if not already installed) and then installs the dependencies.</li>
+</ul>
+</li>
+<li>Run the installer as below. If you get any error run with <code>sudo ...</code>
+
+<ul>
+<li>
+<code>./install.py</code> with no arguments will install to <code>/usr/local/bin</code>.</li>
+<li>
+<code>./install.py INSTALL_PATH</code> will install to a specific directory.</li>
+</ul>
+</li>
+</ul><h2>
+<a name="tips" class="anchor" href="#tips"><span class="octicon octicon-link"></span></a>Tips</h2>
+
+<ul>
+<li>Add <code>debug|d</code> at the end of any execution to view low level details. eg. <code>./gists debug</code>. <em>NOTE - This will reveal your OAuth ID but not your Basic Auth password.</em>
+</li>
+<li>Add <code>supress|silent|s</code> at the end of any execution to supress any prompts of confirmations if you like to live dangerously. 
+
+<ul>
+<li>eg. <code>./gists create FILE supress debug</code>. </li>
+</ul>
+</li>
+</ul><h1>
+<a name="in-development" class="anchor" href="#in-development"><span class="octicon octicon-link"></span></a>In Development</h1>
+
+<ul>
+<li>
+<code>./gists update|u ID [PARAMS]</code> - Update a Gist. Content sent via Console, Clipboard or File.</li>
+<li>
+<code>./gists delete|del|d ID</code> - Delete a Gist.</li>
+<li>
+<code>./gists append|a ID [PARAMS]</code> - Append to a Gist. Content sent via Console, Clipboard or File.</li>
+<li>
+<code>./gists backup|b [DIR]</code> - Backup all Gists in the user's account.</li>
+<li>
+<code>./gists search|query|q QUERY</code> - Search Gists.</li>
+<li>
+<code>./gists star</code> - List starred Gists</li>
+</ul><h1>
+<a name="issues-and-roadmap" class="anchor" href="#issues-and-roadmap"><span class="octicon octicon-link"></span></a>Issues and Roadmap</h1>
+
+<ul>
+<li>Take a look at <a href="https://github.com/khilnani/gists.cli/issues">https://github.com/khilnani/gists.cli/issues</a> to view Issues and Milestones.</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/khilnani">khilnani</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
