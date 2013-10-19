@@ -16,6 +16,7 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
   - Run `sudo easy_install pip`
 - Once PIP is installed, 
   - Run `sudo pip install gists.cli`
+  - Run `sudo pip install gists.cli --upgrade` if upgrading.
 
 ## Authentication
 
