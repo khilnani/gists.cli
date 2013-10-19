@@ -94,8 +94,9 @@ Without specifying a command (eg. create, new), the application will trying to f
 - `./gists Bool "Description" "Content"`
 
 
-If you like to type, or be specific - with the create command specified:
+If you like to type, or be specific (will prompt for stuff like Gist type, Description and Gist Content etc).
 
+- `./gists new|n|create|c`
 - `./gists new|n|create|c FILE`
 - `./gists new|n|create|c "Content"`
 - `./gists new|n|create|c Bool FILE`
