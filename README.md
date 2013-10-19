@@ -42,7 +42,9 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 
 **Create a Gist**
 
-- `./gists new` or `./gists create` - We'll prompt for stuff like Gist type (public/private), Description and Gist Content.
+We'll prompt for stuff like Gist type (public/private), Description and Gist Content as needed.
+
+- `./gists new` or `./gists create`
 - `./gists FILE` - Create a Gist using the contents of FILE
 - `./gists "Content"` - Create a Gist using the string "Content"
 
@@ -94,7 +96,7 @@ Without specifying a command (eg. create, new), the application will trying to f
 - `./gists Bool "Description" "Content"`
 
 
-If you like to type, or be specific (will prompt for stuff like Gist type, Description and Gist Content etc).
+If you like to type, or be specific (will prompt for stuff like Gist type, Description and Gist Content etc as needed).
 
 - `./gists new|n|create|c`
 - `./gists new|n|create|c FILE`
