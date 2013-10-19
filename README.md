@@ -82,7 +82,9 @@ To avoid the Public/private Gist type prompt -
 **Create a Gist**
 
 > FILE - is a file path, relative or absolute.
+
 > Bool - True for Public, False for Private. Supports True, False, 1, 0, Yes, No, y, n. Case-insensitive
+
 > Description and Content - Text content within quotes
 
 
