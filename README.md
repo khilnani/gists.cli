@@ -20,9 +20,9 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 ## Authentication
 
 
-- By default the application will attempt to use Basic Auth to authenticate. 
-- If `~/.git-credentials` is available, it will use the first entry. 
-- If  `~/.gists` is found, it will be given preference over the above two mechanisms.
+- By default the application will attempt to use Basic Auth to authenticate i.e. will prompt for username/password each time it is run.
+- If the file `~/.git-credentials` is available, it will use the first OAuth token entry. 
+- If the file  `~/.gists` with a Github OAuth token is found, it will be given preference over the above two mechanisms.
 - Run `./gists token|t` to avoid the username/password prompt and to use an OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 ## Usage
