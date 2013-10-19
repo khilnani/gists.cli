@@ -50,8 +50,10 @@ We'll prompt for stuff like Gist type (public/private), Description and Gist Con
 
 To avoid the Public/private Gist type prompt -
 
-- `./gists Bool FILE` - Bool should be true for Public, false for Private
-- `./gists Bool "Content"` - Bool should be true for Public, false for Private
+> Bool should be `true` for Public, `false` for Private
+
+- `./gists Bool FILE`
+- `./gists Bool "Content"`
 
 
 
