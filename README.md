@@ -123,7 +123,7 @@ If you would like to contribute changes to the code base
   - `git clone https://github.com/khilnani/gists.cli.git`, or ...
   - Download the latest Tag Archive from https://github.com/khilnani/gists.cli  
     - *Downloading the Archive is not recommended, since it won't be easy to merge code back*.
-- Install dependencies by running `./setup.sh`. 
+- Install dependencies by running `./prepare.sh`. 
   - This installs PIP (if not already installed) and then installs the dependencies.
 - Run the installer as below. If you get any error run with `sudo ...`
   - `./install.py` with no arguments will install to `/usr/local/bin`.
