@@ -4,7 +4,7 @@ import os, sys
 
 package = 'gists_cli'
 alias = 'gists'
-version = '0.21'
+version = '0.22'
 target_path = '/usr/local/bin' if len(sys.argv) == 1 else sys.argv[1]
 
 print ''
