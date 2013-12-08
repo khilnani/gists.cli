@@ -143,12 +143,15 @@ def get (id, path):
   print ('Gist \'{}\' has {} file(s)'.format(id, len(gist['files'])))
   for file in gist['files']:
     print ('  ' + file)
-  confirm = raw_input ("Download to '{}'? (y/n): ".format(target))
-  if confirm == 'y':
+  confirm = raw_input ("Download to (1) './' or (2) '{}'?: ".format(target))
+  if confirm in ('1', '2'):
     try:
       if not os.path.isdir(path):
         os.makedirs(path)
-      os.makedirs(target)
+      if confirm == '1':
+        target = path
+      else:
+        os.makedirs(target)
       for (file, data) in gist['files'].items():
         content = data['content']
         filepath = os.path.join(target,file)
