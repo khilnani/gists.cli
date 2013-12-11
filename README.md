@@ -28,6 +28,7 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 ## Installation
 
 - Install the Python package manager PIP (http://www.pip-installer.org/)
+  - Run `yum install python-setuptools` If you are on a fresh Linux server/VM
   - Run `sudo easy_install pip`
 - Once PIP is installed, 
   - Run `sudo pip install gists.cli`
