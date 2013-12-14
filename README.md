@@ -147,14 +147,14 @@ If you would like to contribute changes to the code base
 
 ## Testing on non-Mac/OS X Systems - Vagrant, Ansible, VirtualBox
 
-- I use http://VagrantUp.com, http://ansibleworks.com and http://virtualBox.org to test on CentOS and Ubuntu.
+- I use http://VagrantUp.com, http://ansibleworks.com and http://www.virtualBox.org to test on CentOS and Ubuntu.
 - Vagrant
   - The vagrant files and provisioning scripts are included. However, the boxes need to be obtained from https://github.com/khilnani/dot_files
   - Please visit http://vagrantup.com/downloads to install Vagrant
 - Ansible
   - I have a script at https://github.com/khilnani/dot_files to install Ansible on Mac OS X or CentOS/RHEL
 - Virtual Box
-  - You need Virtual Box installed prior to running Vagrant. Please visit https://virtualbox.org/wiki/Downloads to download/install
+  - You need Virtual Box installed prior to running Vagrant. Please visit https://www.virtualbox.org/wiki/Downloads to download/install
   
 ## Tips
 
