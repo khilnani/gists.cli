@@ -144,6 +144,17 @@ If you would like to contribute changes to the code base
 - Run the installer as below. If you get any error run with `sudo ...`
   - `./install.py` with no arguments will install to `/usr/local/bin`.
   - `./install.py INSTALL_PATH` will install to a specific directory.
+
+## Testing on non-Mac/OS X Systems - Vagrant, Ansible, VirtualBox
+
+- I use http://VagrantUp.com, http://ansibleworks.com and http://virtualBox.org to test on CentOS and Ubuntu.
+- Vagrant
+  - The vagrant files and provisioning scripts are included. However, the boxes need to be obtained from https://github.com/khilnani/dot_files
+  - Please visit http://vagrantup.com/downloads to install Vagrant
+- Ansible
+  - I have a script at https://github.com/khilnani/dot_files to install Ansible on Mac OS X or CentOS/RHEL
+- Virtual Box
+  - You need Virtual Box installed prior to running Vagrant. Please visit https://virtualbox.org/wiki/Downloads to download/install
   
 ## Tips
 

@@ -1,0 +1,11 @@
+---
+- hosts: all
+  tasks:
+    - name: Update Yum
+      command: yum -y update
+    - name: Install git
+      command: yum -y install git-core
+    - name: Install Python Setup Tools
+      command: yum -y install python-setuptools
+    - name: Install pip
+      command: easy_install pip

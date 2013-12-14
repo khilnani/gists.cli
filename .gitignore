@@ -29,3 +29,6 @@ logs
 tmp
 *.sqlite
 .DS_Store
+.vagrant
+.*.swp
+group_vars/_*
