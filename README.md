@@ -9,6 +9,7 @@
 	- [Usage](#usage-1)
 - [For the Developer](#for-the-developer)
 	- [Installation](#installation-1)
+	- [Non-Mac/OS X System Testing](#non-macos-x-system-testing)
 	- [Tips](#tips)
 - [In Development](#in-development)
 - [Issues and Roadmap](#issues-and-roadmap)
