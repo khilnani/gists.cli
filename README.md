@@ -145,17 +145,26 @@ If you would like to contribute changes to the code base
   - `./install.py` with no arguments will install to `/usr/local/bin`.
   - `./install.py INSTALL_PATH` will install to a specific directory.
 
-## Testing on non-Mac/OS X Systems - Vagrant, Ansible, VirtualBox
+## Non-Mac/OS X System Testing
 
 - I use http://VagrantUp.com, http://ansibleworks.com and http://www.virtualBox.org to test on CentOS and Ubuntu.
-- Vagrant
-  - The vagrant files and provisioning scripts are included. However, the boxes need to be obtained from https://github.com/khilnani/dot_files
-  - Please visit http://vagrantup.com/downloads to install Vagrant
-- Ansible
-  - I have a script at https://github.com/khilnani/dot_files to install Ansible on Mac OS X or CentOS/RHEL
-- Virtual Box
-  - You need Virtual Box installed prior to running Vagrant. Please visit https://www.virtualbox.org/wiki/Downloads to download/install
-  
+- Pre-requisites
+  - Vagrant
+    - Install Vagrant - http://vagrantup.com/downloads
+    - Install the Vagrant Boxes - https://github.com/khilnani/devops/tree/master/vagrant
+  - Ansible
+    - Install Ansible on Mac OS X or CentOS/RHEL - https://github.com/khilnani/devops/tree/master/ansible
+  - Virtual Box
+    - Install VirtualBox - https://www.virtualbox.org/wiki/Downloads to download/install
+- Run
+  -  Change directory to `./vagrant`
+  -  Run `vagrant up centos` or `vagrant up ubuntu` - start the VMs
+  -  Run `vagrant ssh centos` or `vagrant ssh ubuntu` - to ssh over
+  -  Once you SSH over, the current directory is available at `/git_data` on the VM
+- Debug
+  -  Change directory to `./vagrant`
+  -  Run `./debug.ssh up centos` or `./debug.ssh up ubuntu` - This runs Vagrant with Debug Level INFO
+
 ## Tips
 
 - Add `debug|d` at the end of any execution to view low level details. eg. `./gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
