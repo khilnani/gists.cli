@@ -9,9 +9,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.define "centos" do |centos|
     centos.vm.box = "centos-6.5"
     centos.vm.provision "ansible" do |ansible|
-      ansible.playbook = "vagrant/centos.yml"
+      ansible.inventory_path = "./vagrant_ansible_inventory_centos"
+      ansible.playbook = "centos.yml"
       ansible.sudo = true
-      ansible.verbose = 'vv'
+      ansible.verbose = 'vvvv'
     end
   end
 
@@ -19,7 +20,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     ubuntu.vm.box = "ubuntu-12"
   end
 
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder "../", "/git_data"
 
   # config.vm.provider :virtualbox do |vb|
   #   # Don't boot with headless mode
