@@ -158,12 +158,12 @@ If you would like to contribute changes to the code base
   - Virtual Box
     - Install VirtualBox - https://www.virtualbox.org/wiki/Downloads to download/install
 - Run
-  -  Change directory to `./vagrant`
+  -  Change directory to `./_vagrant`
   -  Run `vagrant up centos` or `vagrant up ubuntu` - start the VMs
   -  Run `vagrant ssh centos` or `vagrant ssh ubuntu` - to ssh over
   -  Once you SSH over, the current directory is available at `/git_data` on the VM
 - Debug
-  -  Change directory to `./vagrant`
+  -  Change directory to `./_vagrant`
   -  Run `./debug.ssh up centos` or `./debug.ssh up ubuntu` - This runs Vagrant with Debug Level INFO
 
 ## Tips
