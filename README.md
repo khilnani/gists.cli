@@ -149,7 +149,7 @@ If you would like to contribute changes to the code base
 ## Non-Mac/OS X System Testing
 
 - I use http://VagrantUp.com, http://ansibleworks.com and http://www.virtualBox.org to test on CentOS and Ubuntu.
-- Pre-requisites
+- Prerequisites
   - Vagrant
     - Install Vagrant - http://vagrantup.com/downloads
     - Install the Vagrant Boxes - https://github.com/khilnani/devops/tree/master/vagrant
