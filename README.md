@@ -152,14 +152,14 @@ If you would like to contribute changes to the code base
 - Prerequisites
   - Vagrant
     - Install Vagrant - http://vagrantup.com/downloads
-    - Install the Vagrant Boxes - https://github.com/khilnani/devops/tree/master/vagrant
   - Ansible
     - Install Ansible on Mac OS X or CentOS/RHEL - https://github.com/khilnani/devops/tree/master/ansible
   - Virtual Box
     - Install VirtualBox - https://www.virtualbox.org/wiki/Downloads to download/install
 - Run
   -  Change directory to `./_vagrant`
-  -  Run `vagrant up centos` or `vagrant up ubuntu` - start the VMs
+  -  Run `vagrant up` to install both CentOS6.5 and Ubuntu, or`vagrant up centos` or `vagrant up ubuntu` - start the VMs
+    - If my Boxes are not instaled, they will be downloaded and installed
   -  Run `vagrant ssh centos` or `vagrant ssh ubuntu` - to ssh over
   -  Once you SSH over, the current directory is available at `/git_data` on the VM
 - Debug
