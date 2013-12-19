@@ -5,13 +5,13 @@
   tasks:
     - name: Get OS Release Info
       shell: cat /etc/*-release
-      
+
     - name: Update system
-      yum: name=* state=latest
-      
+      apt: upgrade=dist
+
     - name: Install Python Setup Tools
-      yum: name=python-setuptools state=latest
-      
+      apt: pkg=python-setuptools state=latest
+
     - name: Install pip
       command: easy_install pip
 
