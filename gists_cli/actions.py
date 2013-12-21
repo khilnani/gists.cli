@@ -49,7 +49,7 @@ def list ():
 
 def create (public=None,description=None,content=None,filename=None):
   api.getCredentials()
-  log.debug ("Command: Create: public: '{}' description: '{}' filename: '{}' content: '{}'.".format(str(public), str(description), str(filename), str(content)))
+  log.debug ("Command: Create: public: '{0}' description: '{1}' filename: '{2}' content: '{3}'.".format(str(public), str(description), str(filename), str(content)))
 
   if public == None:
     if _supress:
@@ -67,7 +67,7 @@ def create (public=None,description=None,content=None,filename=None):
     if os.path.isfile( filename ):
       content = util.readFile(filename)
     else:
-      print "Sorry, filename '{}' is actually a Directory.".format(filename)
+      print "Sorry, filename '{0}' is actually a Directory.".format(filename)
       sys.exit(0)
 
   if content == None:
@@ -88,7 +88,7 @@ def create (public=None,description=None,content=None,filename=None):
   gist = api.post(url, data=data)
 
   pub_str = 'Public' if gist['public'] else 'Private'
-  print "{} Gist created with Id '{}' and Url: {}".format(pub_str, gist['id'], gist['html_url'])
+  print "{0} Gist created with Id '{1}' and Url: {2}".format(pub_str, gist['id'], gist['html_url'])
 
 
 #-------------------------------------------
@@ -127,7 +127,7 @@ def view (id):
   for (file, data) in gist['files'].items():
     content = data['content']
     util.line()
-    print 'Gist: {:25} File: {}'.format(id, file)
+    print 'Gist: {0} File: {1}'.format(id, file)
     util.line()
     print content
     util.line()
@@ -140,10 +140,10 @@ def get (id, path):
   gist = _get_gist(id)
   target = os.path.join(path,id)
 
-  print ('Gist \'{}\' has {} file(s)'.format(id, len(gist['files'])))
+  print ('Gist \'{0}\' has {1} file(s)'.format(id, len(gist['files'])))
   for file in gist['files']:
     print ('  ' + file)
-  confirm = raw_input ("Download to (1) './' or (2) '{}'?: ".format(target))
+  confirm = raw_input ("Download to (1) './' or (2) '{0}'?: ".format(target))
   if confirm in ('1', '2'):
     try:
       if not os.path.isdir(path):

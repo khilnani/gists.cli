@@ -22,7 +22,7 @@ def readFile (filename):
       content = file.read()
       file.close()
     except Exception as e:
-      log.error ("Unable to read file '{}'.".format(filename))
+      log.error ("Unable to read file '{0}'.".format(filename))
   return content
 
 
