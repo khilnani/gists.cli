@@ -128,9 +128,9 @@ def view (id):
     content = data['content']
     util.line()
     print 'Gist: {:25} File: {}'.format(id, file)
-    util.line('START')
+    util.line()
     print content
-    util.line('END')
+    util.line()
 
 #-------------------------------------------
 

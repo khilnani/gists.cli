@@ -6,8 +6,8 @@
     - name: Get OS Release Info
       shell: cat /etc/*-release
 
-    - name: Update system
-      apt: upgrade=dist
+#    - name: Update system
+#      apt: upgrade=dist
 
     - name: Install Python Setup Tools
       apt: pkg=python-setuptools state=latest
