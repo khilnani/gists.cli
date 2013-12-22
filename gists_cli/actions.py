@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
-import sys, api, log, util, os, defaults
+import sys, api, log, util, os, defaults, textwrap
+from texttable import Texttable
 
 #-------------------------------------------
 
+_cmds = defaults.cmds
 _supress = False
 
 #-------------------------------------------
@@ -47,9 +49,9 @@ def list ():
 
 #-------------------------------------------
 
-def create (public=None,description=None,content=None,filename=None):
+def new (public=None,description=None,content=None,filename=None):
   api.getCredentials()
-  log.debug ("Command: Create: public: '{0}' description: '{1}' filename: '{2}' content: '{3}'.".format(str(public), str(description), str(filename), str(content)))
+  log.debug ("Command: New: public: '{0}' description: '{1}' filename: '{2}' content: '{3}'.".format(str(public), str(description), str(filename), str(content)))
 
   if public == None:
     if _supress:
@@ -95,19 +97,31 @@ def create (public=None,description=None,content=None,filename=None):
 
 def update (id):
   api.getCredentials()
-  log.debug ("Command: Update" + id)
+  log.debug ("Command: Update: " + id)
 
 #-------------------------------------------
 
 def append (id):
   api.getCredentials()
-  log.debug ("Command: Append" + id)
+  log.debug ("Command: Append: " + id)
 
 #-------------------------------------------
 
 def delete (id):
   api.getCredentials()
-  log.debug ("Command: Delete" + id)
+  log.debug ("Command: Delete: " + id)
+
+#-------------------------------------------
+
+def backup ():
+  api.getCredentials()
+  log.debug ("Command: Backup.")
+
+#-------------------------------------------
+
+def search ():
+  api.getCredentials()
+  log.debug ("Command: Search.")
 
 #-------------------------------------------
 
@@ -166,6 +180,62 @@ def get (id, path):
   else:
     print 'Ok. I won\'t download the Gist.'
 
+
+#-------------------------------------------
+
+def _getHelpTableRow (action, args='', help=''):
+  l = []
+  l.append(action)
+  l.append(util.fileName + ' ' + '|'.join(_cmds[action]) + ' ' + args)
+  l.append(help)
+  return l
+  
+#-------------------------------------------
+
+def help ():
+  log.debug ("Help command.")
+
+  print 'Gists.CLI'
+  print ''
+  print textwrap.fill('An easy to use CLI to manage your GitHub Gists. Create, edit, append, view, search and backup your Gists.', defaults.max_width)
+  print ''
+  print 'Author: Nik Khilnani - https://github.com/khilnani/gists.cli'
+  print ''
+
+  table = Texttable(max_width=defaults.max_width)
+  table.set_deco(Texttable.HEADER | Texttable.HLINES)
+  table.set_cols_align(["l", "l", "l"])
+  table.set_cols_width([8, 45, 37])
+
+  table.header( ["Action","Usage", "Description"] )
+  
+  table.add_row( _getHelpTableRow("Help", help='Display the help documentation') )
+
+  table.add_row( _getHelpTableRow("Token", 'TOKEN', help='Save your Github  OAuth Token. Will be prefeered over ~/.git-credentials to avoid user/password prompts. Saves to ~/.gists') )
+
+  table.add_row( _getHelpTableRow("List", help='Lists your public and private Gists') )
+
+  table.add_row( _getHelpTableRow("View", 'GIST_ID', help='Displays contents of a Gist on screen.') )
+
+  table.add_row( _getHelpTableRow("Download", 'GIST_ID [PATH]', help='Get or Download the files in a Gist to (1) Current Directory, or (2) Directory with Gist ID as its name.') )
+
+  table.add_row( _getHelpTableRow("New", '[PUBLIC_BOOL] [DESCRIPTION] [CONTENT|FILE]', help='Create a new Gist. Will prompt for Public/Private, Description etc. if not provided as arguments. Default is Private.') )
+
+  table.add_row( _getHelpTableRow("Update", help='Update the content of a Gist. NOT IMPLEMENTED') )
+
+  table.add_row( _getHelpTableRow("Append", help='Will append  content to a Gist. NOT IMPLEMENTED') )
+
+  table.add_row( _getHelpTableRow("Delete", help='Delete a Gist. NOT IMPLEMENTED') )
+
+  table.add_row( _getHelpTableRow("Backup", help='Backup or Export all Gists. NOT IMPLEMENTED') )
+
+  table.add_row( _getHelpTableRow("Search", help='Text search the content of your Gists. NOT IMPLEMENTED') )
+
+  table.add_row( _getHelpTableRow("Supress", help='Supress prompts. Defaults will be used.') )
+
+  table.add_row( _getHelpTableRow("Debug", help='Output Debug info. NOTE - Reveals sesnitive info such as OAuth tokens.') )
+
+  print table.draw()
 
 #-------------------------------------------
 

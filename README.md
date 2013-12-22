@@ -19,7 +19,7 @@
 
 > I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
 
-An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, search and download. 
+An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, search and backup your Gists. 
 
 - Github - https://github.com/khilnani/gists.cli 
 - Python Package - https://pypi.python.org/pypi/gists.cli
@@ -45,57 +45,62 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 
 ## Usage
 
+> *All the commands below are interactive and will prompt for user input (eg. public/private, descriptions) and confirmations (eg. directory creation).*
 
-*All the commands below are interactive and will prompt for user input (eg. public/private, descriptions) and confirmations (eg. directory creation).*
+*Each Action/Command has multiple alias e.g. Create can be invoked not only by `gists new|create`, but also  `gists c|n|new|create|--new|--create|-n|-c` Run `gists help|--help|-h|h` for more info.*
 
 **List all your Gists**
 
-- `./gists`
+- `gists`
 
 **View a Gist**
 
-- `./gists ID` - View Gist with ID on the console.
-- `./gists ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
+- `gists ID` - View Gist with ID on the console.
+- `gists ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
 
 
 **Create a Gist**
 
 We'll prompt for stuff like Gist type (public/private), Description and Gist Content as needed.
 
-- `./gists new` or `./gists create`
-- `./gists FILE` - Create a Gist using the contents of FILE
-- `./gists "Content"` - Create a Gist using the string "Content"
+- `gists new` or `./gists create`.
+- `gists FILE` - Create a Gist using the contents of FILE
+- `gists "Content"` - Create a Gist using the string "Content"
 
 To avoid the Public/private Gist type prompt -
 
 > Bool should be `true` for Public, `false` for Private
 
-- `./gists Bool FILE`
-- `./gists Bool "Content"`
+- `gists Bool FILE`
+- `gists Bool "Content"`
 
 
 
 # For The Advanced User
 
+## Tips
+
+- Each Action/Command has multiple alias e.g. Create can be invoked not only by `gists new|create`, but also  `gists c|n|new|create|--new|--create|-n|-c` Run `gists help|--help|-h|h` for more info
+- Add `debug|--debug` to the end of any execution to view low level details. eg. `./gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
+- Add `supress|silent|--supress|--silient` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. 
+- eg. `./gists -n FILE --supress --debug`. 
 
 ## Usage
 
-
 *All the commands below are interactive and will prompt for user input.*
-*To suppress interactivity, simple include the word 'suppress', 'silent' or 's'. See the 'Tips' section for more info.*
 
 **List all your Gists**
 
-- `./gists` - list your Gists.
+- `gists` - list your Gists.
 
 **View a Gist**
 
-- `./gists ID` - view Gist with ID on the console.
-- `./gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
+- `gists ID` - view Gist with ID on the console.
+- `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
 
 **Setup OAuth token**
 
-- `./gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
+- `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 **Create a Gist**
 
@@ -106,27 +111,50 @@ To avoid the Public/private Gist type prompt -
 
 Without specifying a command (eg. create, new), the application will trying to figure it out. However, this supports fewer combinations of arguments.
 
-- `./gists FILE`
-- `./gists "Content"`
-- `./gists Bool FILE`
-- `./gists Bool "Content"`
-- `./gists "Description" FILE`
-- `./gists "Description" "Content"`
-- `./gists Bool "Description" FILE`
-- `./gists Bool "Description" "Content"`
+- `gists FILE`
+- `gists "Content"`
+- `gists Bool FILE`
+- `gists Bool "Content"`
+- `gists "Description" FILE`
+- `gists "Description" "Content"`
+- `gists Bool "Description" FILE`
+- `gists Bool "Description" "Content"`
 
 
 If you like to type, or be specific (will prompt for stuff like Gist type, Description and Gist Content etc as needed).
 
-- `./gists new|n|create|c`
-- `./gists new|n|create|c FILE`
-- `./gists new|n|create|c "Content"`
-- `./gists new|n|create|c Bool FILE`
-- `./gists new|n|create|c Bool "Content"`
-- `./gists new|n|create|c "Description" FILE`
-- `./gists new|n|create|c "Description" "Content"`
-- `./gists new|n|create|c Bool "Description" FILE`
-- `./gists new|n|create|c Bool "Description" "Content"`
+- `gists new|n|create|c`
+- `gists new|n|create|c FILE`
+- `gists new|n|create|c "Content"`
+- `gists new|n|create|c Bool FILE`
+- `gists new|n|create|c Bool "Content"`
+- `gists new|n|create|c "Description" FILE`
+- `gists new|n|create|c "Description" "Content"`
+- `gists new|n|create|c Bool "Description" FILE`
+- `gists new|n|create|c Bool "Description" "Content"`
+
+# In Development
+
+**Update**
+
+- `gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
+- `gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
+
+**Delete**
+
+- `gists delete|del|d ID` - Delete a Gist.
+
+**Export/Backup**
+
+- `gists backup|b [DIR]` - Backup all Gists in the user's account.
+
+**Search**
+
+- `gists search|query|q QUERY` - Search Gists.
+
+**Misc**
+
+- `gists star` - List starred Gists
 
 
 # For the Developer
@@ -165,21 +193,6 @@ If you would like to contribute changes to the code base
 - Debug
   -  Change directory to `./_vagrant`
   -  Run `./debug.ssh up centos` or `./debug.ssh up ubuntu` - This runs Vagrant with Debug Level INFO
-
-## Tips
-
-- Add `debug|d` at the end of any execution to view low level details. eg. `./gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
-- Add `supress|silent|s` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. 
-  - eg. `./gists create FILE supress debug`. 
-
-# In Development
-
-- `./gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
-- `./gists delete|del|d ID` - Delete a Gist.
-- `./gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
-- `./gists backup|b [DIR]` - Backup all Gists in the user's account.
-- `./gists search|query|q QUERY` - Search Gists.
-- `./gists star` - List starred Gists
 
 # Issues and Roadmap
 

@@ -15,7 +15,7 @@ setup(
     include_package_data=True,
     long_description=readme,
     packages=find_packages(),
-    install_requires=['requests'],
+    install_requires=['requests','texttable'],
     entry_points={
         'console_scripts': [
             'gists = gists_cli.gists:main',
