@@ -32,8 +32,14 @@ def list ():
   gists = api.get(url)
   public_count = 0
   private_count = 0
-  print '{0:4} {1:30} {2:8} {3:25} {4}'.format('', 'Files', 'Public', 'Id', 'Description')
-  print '{0:4} {1:30} {2:8} {3:25} {4}'.format('', '-----', '------', '--', '-----------')
+
+  table = Texttable(max_width=defaults.max_width)
+  table.set_deco(Texttable.HEADER | Texttable.HLINES)
+  table.set_cols_align(["l", "l", "l", "l", "l"])
+  table.set_cols_width([4, 30, 6, 20, 30])
+
+  table.header( ["","Files","Public", "Gist ID",  "Description"] )
+
   for (i, gist) in enumerate(gists):
     private = False
     file_list = ''
@@ -43,9 +49,12 @@ def list ():
       public_count += 1
     else:
       private_count += 1
-    print '{0:4} {1:30} {2:8} {3:25} {4}'.format(i+1, file_list, str(gist['public']), gist['id'], gist['description'])
+    table.add_row( [i+1, file_list, str(gist['public']), gist['id'], gist['description']] )
+
+  print table.draw()
+
   print ''
-  print "     You have %i Gists. (%i Private)" % (len(gists), private_count)
+  print "You have %i Gists. (%i Private)" % (len(gists), private_count)
 
 #-------------------------------------------
 
