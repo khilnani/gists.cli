@@ -1,19 +1,3 @@
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
-
-- [Gists.cli](#gistscli)
-- [For the Casual User](#for-the-casual-user)
-	- [Installation](#installation)
-	- [Authentication](#authentication)
-	- [Usage](#usage)
-- [For The Advanced User](#for-the-advanced-user)
-	- [Usage](#usage-1)
-- [For the Developer](#for-the-developer)
-	- [Installation](#installation-1)
-	- [Non-Mac/OS X System Testing](#non-macos-x-system-testing)
-	- [Tips](#tips)
-- [In Development](#in-development)
-- [Issues and Roadmap](#issues-and-roadmap)
-
 # Gists.cli
 
 
