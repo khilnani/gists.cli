@@ -83,7 +83,7 @@ def main ( ):
   args = sys.argv
   
   if len(args) == 1:
-    log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % sys.argv[0])
+    log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % util.fileName)
     print ''
 
   del args[0] # Delete the filename

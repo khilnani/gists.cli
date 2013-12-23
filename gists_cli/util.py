@@ -2,7 +2,7 @@
 
 import os, log, sys
 
-fileName = sys.argv[0]
+fileName = os.path.basename(sys.argv[0])
 
 def argv ( ids ):
 # print ("util.argv: " + str(ids))
