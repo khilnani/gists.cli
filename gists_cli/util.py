@@ -1,8 +1,16 @@
 #!/usr/bin/env python
 
-import os, log, sys
+import os, log, sys, defaults
+
+#-------------------------------------------
+
+_cmds = defaults.cmds
+
+#-------------------------------------------
 
 fileName = os.path.basename(sys.argv[0])
+
+#-------------------------------------------
 
 def argv ( ids ):
 # print ("util.argv: " + str(ids))
@@ -14,6 +22,7 @@ def argv ( ids ):
   # print "util.argv False"
   return False
 
+#-------------------------------------------
 
 def readFile (filename):
   log.debug ("readFile: " + str(filename))
@@ -27,6 +36,7 @@ def readFile (filename):
       log.error ("Unable to read file '{0}'.".format(filename))
   return content
 
+#-------------------------------------------
 
 def readConsole(prompt='Please type/paste content:', required=True, bool=False):
   content = raw_input(prompt)
@@ -37,6 +47,7 @@ def readConsole(prompt='Please type/paste content:', required=True, bool=False):
       content = readConsole (prompt, required, bool)
   return content
 
+#-------------------------------------------
 
 def parseBool (obj):
   log.debug ("parseBool: " + str(obj))
@@ -51,6 +62,30 @@ def parseBool (obj):
     return False
   return None
 
+#-------------------------------------------
+
+def isGistIdent (id):
+  return isGistID(id) or isGistIndex(id)
+
+#-------------------------------------------
+
+def isGistID (id):
+  return id.strip().isalnum() == True
+
+#-------------------------------------------
+
+def isGistIndex (id):
+  ret = False
+  if len(id) > 1 and id[0] in _cmds['#']:
+    try:
+      i = int(id[1:])
+      ret = True
+    except:
+      ret = False
+  return ret
+
+#-------------------------------------------
+
 def isFileOrDir (obj):
   log.debug ("isFileOrDir: " + str(obj))
   obj_str = str(obj)
@@ -59,6 +94,8 @@ def isFileOrDir (obj):
   elif os.path.isfile(obj_str) or os.path.isdir(obj_str):
     return True
   return False
+
+#-------------------------------------------
 
 def isFile (obj):
   log.debug ("isFile: " + str(obj))
@@ -69,8 +106,12 @@ def isFile (obj):
     return True
   return False
 
+#-------------------------------------------
+
 def line (msg=""):
-  print "---------------------------------------------------------------------------------------------" + msg
+  print "------------------------------------------------------------------------------------------" + msg
+
+#-------------------------------------------
 
 if __name__ == '__main__':
   print ''

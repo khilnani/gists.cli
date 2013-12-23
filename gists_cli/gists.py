@@ -36,7 +36,7 @@ def _deriveCmd( args ):
     # list
     cmd = "list"
   elif alen == 1:
-    if args[0].strip().isalnum() == True and util.isFileOrDir( args[0] ) == False  and util.parseBool( args[0] ) == None:
+    if util.isGistIdent(args[0]) == True and util.isFileOrDir( args[0] ) == False  and util.parseBool( args[0] ) == None:
       # view ID
       cmd = "view"
     elif util.isFileOrDir( args[0] ) == True:
@@ -46,7 +46,7 @@ def _deriveCmd( args ):
       # create/new 'Content'
       cmd = "new"
   elif alen == 2:
-    if str(args[0]).strip().isalnum() and util.parseBool( args[0] ) == None:
+    if util.isGistIdent(args[0]) == True and util.parseBool( args[0] ) == None:
       # get ID 'Dir'
       cmd =  "get"
     else:

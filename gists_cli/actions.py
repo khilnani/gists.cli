@@ -144,68 +144,103 @@ def _get_gist(id):
 
 #-------------------------------------------
 
+def _get_id_for_index(id):
+  log.debug("_get_id_for_index: " + str(id))
+
+  _id = ''
+  if id[0] in _cmds['#']:
+    index = -1
+    try:
+      index = int(id[1:])
+    except ValueError:
+      log.error('Please use a valid number as the index.')
+      return _id
+
+    log.debug("Using index: " + str(index))
+    api.getCredentials()
+    url = "/gists"
+    gists = api.get(url)
+    for (i, gist) in enumerate(gists):
+      log.debug("Checking...  gist {0} at index: {1} == {2} ?".format(gist['id'], (i+1), index)) 
+      if i+1 == index:
+        _id = gist['id']
+        log.debug("Found Gist: {0} at index: {1}".format(_id, index))
+        break
+  return _id
+
+#-------------------------------------------
+
 def view (id, fileName=''): 
   log.debug("Viewing Gist with ID: {0} and fileName: '{1}'".format(id,fileName))
-  gist = _get_gist(id)
-  # display line delims only if more than one file exists. facilitates piping file content
-  noDelim = len(gist['files']) == 1 or fileName != ''
-  for (file, data) in gist['files'].items():
-    content = data['content']
-    if not noDelim:
-      util.line()
-      print 'Gist: {0} File: {1}'.format(id, file)
-      util.line()
-    if fileName != '':
-      if fileName.strip().lower() == file.strip().lower():
+
+  if id[0] in _cmds['#']:
+    id = _get_id_for_index(id)
+
+  if id:
+    gist = _get_gist(id)
+    # display line delims only if more than one file exists. facilitates piping file content
+    noDelim = len(gist['files']) == 1 or fileName != ''
+    for (file, data) in gist['files'].items():
+      content = data['content']
+      if not noDelim:
+        util.line()
+        print 'Gist: {0} File: {1}'.format(id, file)
+        util.line()
+      if fileName != '':
+        if fileName.strip().lower() == file.strip().lower():
+          print content
+      else:
         print content
-    else:
-      print content
-    if not noDelim:
-      util.line()
+      if not noDelim:
+        util.line()
 
 #-------------------------------------------
 
 def get (id, path, fileName=''):
   log.debug ("Downloading Gist with Id '{0}' (fileName: {1}) to '{2}'.".format (id, fileName, path))
 
-  gist = _get_gist(id)
-  target = os.path.join(path,id)
+  if id[0] in _cmds['#']:
+    id = _get_id_for_index(id)
 
-  print ('Gist \'{0}\' has {1} file(s)'.format(id, len(gist['files'])))
-  for file in gist['files']:
-    print ('  ' + file)
-  dmsg = 'file(s)' if fileName == '' else "'" + fileName + "'"
-  confirm = raw_input ("Download {0} to (1) '{1}/' or (2) '{2}/'?: ".format(dmsg, path, target))
-  if confirm in ('1', '2'):
-    filesDownloaded = 0
-    try:
-      if not os.path.isdir(path):
-        os.makedirs(path)
-      if confirm == '1':
-        target = path
-      else:
-        os.makedirs(target)
-      for (file, data) in gist['files'].items():
-        downLoadFile = False
-        if fileName != '':
-          if fileName.strip().lower() == file.strip().lower():
-            downLoadFile = True
+  if id:
+    gist = _get_gist(id)
+    target = os.path.join(path,id)
+
+    print ('Gist \'{0}\' has {1} file(s)'.format(id, len(gist['files'])))
+    for file in gist['files']:
+      print ('  ' + file)
+    dmsg = 'file(s)' if fileName == '' else "'" + fileName + "'"
+    confirm = raw_input ("Download {0} to (1) '{1}/' or (2) '{2}/'?: ".format(dmsg, path, target))
+    if confirm in ('1', '2'):
+      filesDownloaded = 0
+      try:
+        if not os.path.isdir(path):
+          os.makedirs(path)
+        if confirm == '1':
+          target = path
         else:
-          downLoadFile = True
-        if downLoadFile == True:
-          content = data['content']
-          filepath = os.path.join(target,file)
-          file = open( filepath , 'w')
-          file.write(content)
-          file.close()
-          filesDownloaded += 1
-          log.debug( 'Saved file:' + filepath )
-      print ('{0} File(s) downloaded.'.format(filesDownloaded))
-    except Exception as e:
-      print "Insufficient privilages to write to %s." % target
-      print "Error message: " + str(e)
-  else:
-    print 'Ok. I won\'t download the Gist.'
+          os.makedirs(target)
+        for (file, data) in gist['files'].items():
+          downLoadFile = False
+          if fileName != '':
+            if fileName.strip().lower() == file.strip().lower():
+              downLoadFile = True
+          else:
+            downLoadFile = True
+          if downLoadFile == True:
+            content = data['content']
+            filepath = os.path.join(target,file)
+            file = open( filepath , 'w')
+            file.write(content)
+            file.close()
+            filesDownloaded += 1
+            log.debug( 'Saved file:' + filepath )
+        print ('{0} File(s) downloaded.'.format(filesDownloaded))
+      except Exception as e:
+        print "Insufficient privilages to write to %s." % target
+        print "Error message: " + str(e)
+    else:
+      print 'Ok. I won\'t download the Gist.'
 
 
 #-------------------------------------------
@@ -242,9 +277,9 @@ def help ():
 
   table.add_row( _getHelpTableRow("List", help='Lists your public and private Gists.') )
 
-  table.add_row( _getHelpTableRow("View", 'GIST_ID [FILE]', help='Displays contents of a Gist on screen. To view a specific file, specify [FILE].') )
+  table.add_row( _getHelpTableRow("View", "GIST_ID|'.'INDEX [FILE]", help="Displays contents of a Gist on screen. To view a specific file, specify [FILE]. Instead of the Gist ID, the (1 based) index of the Gist in the View screen can be used. eg. %1, .1, :1 or '#1'") )
 
-  table.add_row( _getHelpTableRow("Download", 'GIST_ID PATH [FILE]', help='Get or Download the files in a Gist to (1) Current Directory, or (2) Directory with Gist ID as its name. To download a specific file, specify [FILE]. ') )
+  table.add_row( _getHelpTableRow("Download", "GIST_ID|'.'INDEX PATH [FILE]", help="Get or Download the files in a Gist to (1) Current Directory, or (2) Directory with Gist ID as its name. To download a specific file, specify [FILE]. Instead of the Gist ID, the (1 based) index of the Gist in the View screen can be used. eg. %1, .1, :1 or '#1'") )
 
   table.add_row( _getHelpTableRow("New", '[PUBLIC_BOOL] [DESCRIPTION] [CONTENT|FILE]', help='Create a new Gist. Will prompt for Public/Private, Description etc. if not provided as arguments. Default is Private.') )
 

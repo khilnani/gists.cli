@@ -9,6 +9,7 @@ download = True
 max_width = 100
 
 cmds = {}
+cmds['#'] = ['#','.','%',':']
 cmds['Help'] = ["help", "--help", "h", "-h"]
 cmds['Token'] = ["token", "--token", "t", "-t"]
 cmds['List'] = ["list", "--list", "l", "-l"]
