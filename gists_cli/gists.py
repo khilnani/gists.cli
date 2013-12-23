@@ -115,7 +115,10 @@ def main ( ):
   elif cmd in (_cmds['Token']):
     actions.updateCredentials()
   elif cmd in (_cmds['View']):
-    actions.view( args[0] )
+    if len(args) == 1:
+      actions.view( args[0] )
+    elif len(args) == 2:
+      actions.view( args[0], fileName=args[1])
   elif cmd in (_cmds['Download']):
     actions.get( args[0], args[1] )
   elif cmd in (_cmds['Append']):

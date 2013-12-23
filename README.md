@@ -55,7 +55,10 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 
 **View a Gist**
 
-- `gists ID` - View Gist with ID on the console.
+- `gists ID` - View all files within a Gist with ID on the console.
+
+**Download a Gist**
+
 - `gists ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
 
 
@@ -91,16 +94,20 @@ To avoid the Public/private Gist type prompt -
 
 **List all your Gists**
 
-- `gists` - list your Gists.
+- `gists` - List your Gists.
 
 **View a Gist**
 
-- `gists ID` - view Gist with ID on the console.
-- `gists ID PATH` - download Gist files with ID to PATH. Will prompt for confirmation.
+- `gists ID` - View all files within a Gist with ID on the console.
+- `gists ID FILE` - View a specific file (FILE) in a Gist on the console. The matching is case-insensitive.
+
+**Download a Gist**
+
+- `gists ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
 
 **Setup OAuth token**
 
-- `gists token|t` - setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
+- `gists token|t` - Setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 **Create a Gist**
 

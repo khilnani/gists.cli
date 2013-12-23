@@ -145,7 +145,7 @@ def _get_gist(id):
 #-------------------------------------------
 
 def view (id, fileName=''): 
-  log.debug("Viewing Gist with ID: " + id)
+  log.debug("Viewing Gist with ID: {0} and fileName: '{1}'".format(id,fileName))
   gist = _get_gist(id)
   # display line delims only if more than one file exists. facilitates piping file content
   noDelim = len(gist['files']) == 1 or fileName != ''
@@ -156,7 +156,7 @@ def view (id, fileName=''):
       print 'Gist: {0} File: {1}'.format(id, file)
       util.line()
     if fileName != '':
-      if fileName == file:
+      if fileName.strip().lower() == file.strip().lower():
         print content
     else:
       print content
@@ -174,7 +174,7 @@ def get (id, path):
   print ('Gist \'{0}\' has {1} file(s)'.format(id, len(gist['files'])))
   for file in gist['files']:
     print ('  ' + file)
-  confirm = raw_input ("Download to (1) './' or (2) '{0}'?: ".format(target))
+  confirm = raw_input ("Download to (1) '{0}/' or (2) '{1}/'?: ".format(path, target))
   if confirm in ('1', '2'):
     try:
       if not os.path.isdir(path):
