@@ -41,7 +41,7 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 - By default the application will attempt to use Basic Auth to authenticate i.e. will prompt for username/password each time it is run.
 - If the file `~/.git-credentials` is available, it will use the first OAuth token entry. 
 - If the file  `~/.gists` with a Github OAuth token is found, it will be given preference over the above two mechanisms.
-- Run `./gists token|t` to avoid the username/password prompt and to use an OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
+- Run `gists token|t` to avoid the username/password prompt and to use an OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 ## Usage
 
@@ -63,7 +63,7 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 
 We'll prompt for stuff like Gist type (public/private), Description and Gist Content as needed.
 
-- `gists new` or `./gists create`.
+- `gists new` or `gists create`.
 - `gists FILE` - Create a Gist using the contents of FILE
 - `gists "Content"` - Create a Gist using the string "Content"
 
@@ -81,9 +81,9 @@ To avoid the Public/private Gist type prompt -
 ## Tips
 
 - Each Action/Command has multiple alias e.g. Create can be invoked not only by `gists new|create`, but also  `gists c|n|new|create|--new|--create|-n|-c` Run `gists help|--help|-h|h` for more info
-- Add `debug|--debug` to the end of any execution to view low level details. eg. `./gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
+- Add `debug|--debug` to the end of any execution to view low level details. eg. `gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
 - Add `supress|silent|--supress|--silient` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. 
-- eg. `./gists -n FILE --supress --debug`. 
+- eg. `gists -n FILE --supress --debug`. 
 
 ## Usage
 
