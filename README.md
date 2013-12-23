@@ -1,4 +1,4 @@
--**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
  -
  - [Gists.cli](#gistscli)
  - [For the Casual User](#for-the-casual-user)
@@ -14,6 +14,7 @@
  - [In Development](#in-development)
  - [Issues and Roadmap](#issues-and-roadmap)
  - [Troubleshooting](#troubleshooting)
+ 
  
 
 # Gists.cli
