@@ -110,7 +110,7 @@ In addition to the usage examples above, you can also gain additional flexibilit
 
 **Setup OAuth token**
 
-- `gists token|t` - Setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
+- `gists token|t|--token|-t` - Setup to use OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 **Create a Gist**
 
