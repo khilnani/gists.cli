@@ -13,6 +13,8 @@
    - [Non-Mac/OS X System Testing](#non-macos-x-system-testing)
  - [In Development](#in-development)
  - [Issues and Roadmap](#issues-and-roadmap)
+ - [Troubleshooting](#troubleshooting)
+ 
 
 # Gists.cli
 
@@ -210,4 +212,11 @@ If you would like to contribute changes to the code base
 
 - Take a look at https://github.com/khilnani/gists.cli/issues to view Issues and Milestones.
 
+# Troubleshooting
+
+- If you get the error below, this is likely due to you running Python 2.6.2 or earlier. 
+
+> AttributeError: VerifiedHTTPSConnection instance has no attribute '_tunnel_host
+
+- Running `sudo pip install requests==1.2.3` resolves the issue. The requests 2.0 library uses urllib3 that uses some capabilities only available in Python 2.6.3
 
