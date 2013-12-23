@@ -44,7 +44,7 @@ def list ():
     private = False
     file_list = ''
     for (file, data) in gist['files'].items():
-      file_list += file 
+      file_list += "'" + file + "' " 
     if gist['public']:
       public_count += 1
     else:
@@ -144,16 +144,24 @@ def _get_gist(id):
 
 #-------------------------------------------
 
-def view (id):
-  print ("Fetching Gist with Id '%s'." % id)
+def view (id, fileName=''): 
+  log.debug("Viewing Gist with ID: " + id)
   gist = _get_gist(id)
+  # display line delims only if more than one file exists. facilitates piping file content
+  noDelim = len(gist['files']) == 1 or fileName != ''
   for (file, data) in gist['files'].items():
     content = data['content']
-    util.line()
-    print 'Gist: {0} File: {1}'.format(id, file)
-    util.line()
-    print content
-    util.line()
+    if not noDelim:
+      util.line()
+      print 'Gist: {0} File: {1}'.format(id, file)
+      util.line()
+    if fileName != '':
+      if fileName == file:
+        print content
+    else:
+      print content
+    if not noDelim:
+      util.line()
 
 #-------------------------------------------
 

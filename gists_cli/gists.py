@@ -75,7 +75,7 @@ def _printNoImpl():
 
 def main ( ):
 
-  print ''
+  #print ''
 
   log.setDebug( util.argv( _cmds['Debug'] ) )
   actions.supress( util.argv( _cmds['Supress']) )
