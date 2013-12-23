@@ -120,7 +120,10 @@ def main ( ):
     elif len(args) == 2:
       actions.view( args[0], fileName=args[1])
   elif cmd in (_cmds['Download']):
-    actions.get( args[0], args[1] )
+    if len(args) == 2:
+      actions.get( args[0], path=args[1] )
+    elif len(args) == 3:
+      actions.get( args[0], fileName=args[1], path=args[2] )
   elif cmd in (_cmds['Append']):
     _printNoImpl()
     actions.append( args[0] )

@@ -90,20 +90,23 @@ To avoid the Public/private Gist type prompt -
 
 ## Usage
 
+In addition to the usage examples above, you can also gain additional flexibility by specifying command line options (eg. -g, --get)
+
 *All the commands below are interactive and will prompt for user input.*
 
 **List all your Gists**
 
-- `gists` - List your Gists.
+- `gists list|--list|-l|l`
 
 **View a Gist**
 
-- `gists ID` - View all files within a Gist with ID on the console.
-- `gists ID FILE` - View a specific file (FILE) in a Gist on the console. The matching is case-insensitive.
+- `gists view|--view|v|-v ID` - View all files within a Gist with ID on the console.
+- `gists view|--view|v|-v ID FILE` - View a specific file (FILE) in a Gist on the console. The matching is case-insensitive.
 
 **Download a Gist**
 
-- `gists ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
+- `gists get|--get|g|-g ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
+- `gists get|--get|g|-g ID FILE PATH ` - Download a specific file (FILE) in a Gist to PATH. The matching is case-insensitive.
 
 **Setup OAuth token**
 
@@ -128,40 +131,42 @@ Without specifying a command (eg. create, new), the application will trying to f
 - `gists Bool "Description" "Content"`
 
 
-If you like to type, or be specific (will prompt for stuff like Gist type, Description and Gist Content etc as needed).
+If you like to type, or be specific you can also use the command line option. You will be prompted for stuff like Gist type, Description and Gist Content etc as needed.
 
-- `gists new|n|create|c`
-- `gists new|n|create|c FILE`
-- `gists new|n|create|c "Content"`
-- `gists new|n|create|c Bool FILE`
-- `gists new|n|create|c Bool "Content"`
-- `gists new|n|create|c "Description" FILE`
-- `gists new|n|create|c "Description" "Content"`
-- `gists new|n|create|c Bool "Description" FILE`
-- `gists new|n|create|c Bool "Description" "Content"`
+**OPTION** = `new|--new|n|-n|create|--create|c|-c`
+
+- `gists OPTION`
+- `gists OPTION FILE`
+- `gists OPTION "Content"`
+- `gists OPTION Bool FILE`
+- `gists OPTION Bool "Content"`
+- `gists OPTION "Description" FILE`
+- `gists OPTION "Description" "Content"`
+- `gists OPTION Bool "Description" FILE`
+- `gists OPTION Bool "Description" "Content"`
 
 # In Development
 
 **Update**
 
-- `gists update|u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
-- `gists append|a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
+- `gists update|u|--update|-u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
+- `gists append|a|--append|-a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
 
 **Delete**
 
-- `gists delete|del|d ID` - Delete a Gist.
+- `gists delete|del|d|--delete|--del|-d ID` - Delete a Gist.
 
 **Export/Backup**
 
-- `gists backup|b [DIR]` - Backup all Gists in the user's account.
+- `gists backup|b|--backup|-b [DIR]` - Backup all Gists in the user's account.
 
 **Search**
 
-- `gists search|query|q QUERY` - Search Gists.
+- `gists search|query|q|--search|--query|-q QUERY` - Search Gists.
 
 **Misc**
 
-- `gists star` - List starred Gists
+- `gists stars|--stars` - List starred Gists
 
 
 # For the Developer

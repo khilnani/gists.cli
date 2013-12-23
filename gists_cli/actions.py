@@ -165,8 +165,8 @@ def view (id, fileName=''):
 
 #-------------------------------------------
 
-def get (id, path):
-  log.debug ("Downloading Gist with Id '%s' to '%s'." % (id, path))
+def get (id, path, fileName=''):
+  log.debug ("Downloading Gist with Id '{0}' (fileName: {1}) to '{2}'.".format (id, fileName, path))
 
   gist = _get_gist(id)
   target = os.path.join(path,id)
@@ -174,8 +174,10 @@ def get (id, path):
   print ('Gist \'{0}\' has {1} file(s)'.format(id, len(gist['files'])))
   for file in gist['files']:
     print ('  ' + file)
-  confirm = raw_input ("Download to (1) '{0}/' or (2) '{1}/'?: ".format(path, target))
+  dmsg = 'file(s)' if fileName == '' else "'" + fileName + "'"
+  confirm = raw_input ("Download {0} to (1) '{1}/' or (2) '{2}/'?: ".format(dmsg, path, target))
   if confirm in ('1', '2'):
+    filesDownloaded = 0
     try:
       if not os.path.isdir(path):
         os.makedirs(path)
@@ -184,13 +186,21 @@ def get (id, path):
       else:
         os.makedirs(target)
       for (file, data) in gist['files'].items():
-        content = data['content']
-        filepath = os.path.join(target,file)
-        file = open( filepath , 'w')
-        file.write(content)
-        file.close()
-        log.debug( 'Wrote file:' + filepath )
-      print 'Download complete.'
+        downLoadFile = False
+        if fileName != '':
+          if fileName.strip().lower() == file.strip().lower():
+            downLoadFile = True
+        else:
+          downLoadFile = True
+        if downLoadFile == True:
+          content = data['content']
+          filepath = os.path.join(target,file)
+          file = open( filepath , 'w')
+          file.write(content)
+          file.close()
+          filesDownloaded += 1
+          log.debug( 'Saved file:' + filepath )
+      print ('{0} File(s) downloaded.'.format(filesDownloaded))
     except Exception as e:
       print "Insufficient privilages to write to %s." % target
       print "Error message: " + str(e)
@@ -230,11 +240,11 @@ def help ():
 
   table.add_row( _getHelpTableRow("Token", 'TOKEN', help='Save your Github  OAuth Token. Will be prefeered over ~/.git-credentials to avoid user/password prompts. Saves to ~/.gists') )
 
-  table.add_row( _getHelpTableRow("List", help='Lists your public and private Gists') )
+  table.add_row( _getHelpTableRow("List", help='Lists your public and private Gists.') )
 
-  table.add_row( _getHelpTableRow("View", 'GIST_ID', help='Displays contents of a Gist on screen.') )
+  table.add_row( _getHelpTableRow("View", 'GIST_ID [FILE]', help='Displays contents of a Gist on screen. To view a specific file, specify [FILE].') )
 
-  table.add_row( _getHelpTableRow("Download", 'GIST_ID [PATH]', help='Get or Download the files in a Gist to (1) Current Directory, or (2) Directory with Gist ID as its name.') )
+  table.add_row( _getHelpTableRow("Download", 'GIST_ID PATH [FILE]', help='Get or Download the files in a Gist to (1) Current Directory, or (2) Directory with Gist ID as its name. To download a specific file, specify [FILE]. ') )
 
   table.add_row( _getHelpTableRow("New", '[PUBLIC_BOOL] [DESCRIPTION] [CONTENT|FILE]', help='Create a new Gist. Will prompt for Public/Private, Description etc. if not provided as arguments. Default is Private.') )
 
