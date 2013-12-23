@@ -60,10 +60,13 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 
 - `gists ID` - View all files within a Gist with ID on the console.
 
+> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+
 **Download a Gist**
 
 - `gists ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
 
+> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
 **Create a Gist**
 
@@ -87,6 +90,7 @@ To avoid the Public/private Gist type prompt -
 ## Tips
 
 - Each Action/Command has multiple alias e.g. Create can be invoked not only by `gists new|create`, but also  `gists c|n|new|create|--new|--create|-n|-c` Run `gists help|--help|-h|h` for more info
+- ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 - Add `debug|--debug` to the end of any execution to view low level details. eg. `gists debug`. *NOTE - This will reveal your OAuth ID but not your Basic Auth password.*
 - Add `supress|silent|--supress|--silient` at the end of any execution to supress any prompts of confirmations if you like to live dangerously. 
 - eg. `gists -n FILE --supress --debug`. 
@@ -106,14 +110,14 @@ In addition to the usage examples above, you can also gain additional flexibilit
 - `gists view|--view|v|-v ID` - View all files within a Gist with ID on the console.
 - `gists view|--view|v|-v ID FILE` - View a specific file (FILE) in a Gist on the console. The matching is case-insensitive.
 
-> ID can be a Gist ID or Index ID (of the Gist in the List vist) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
 **Download a Gist**
 
 - `gists get|--get|g|-g ID PATH` - Download Gist files with ID to PATH. Will prompt for confirmation.
 - `gists get|--get|g|-g ID FILE PATH ` - Download a specific file (FILE) in a Gist to PATH. The matching is case-insensitive.
 
-> ID can be a Gist ID or Index ID (of the Gist in the List vist) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
 **Setup OAuth token**
 
@@ -159,13 +163,13 @@ If you like to type, or be specific you can also use the command line option. Yo
 - `gists update|u|--update|-u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
 - `gists append|a|--append|-a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
 
-> ID can be a Gist ID or Index ID (of the Gist in the List vist) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
 **Delete**
 
 - `gists delete|del|d|--delete|--del|-d ID` - Delete a Gist.
 
-> ID can be a Gist ID or Index ID (of the Gist in the List vist) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
 **Export/Backup**
 
