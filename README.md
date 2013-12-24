@@ -15,7 +15,7 @@
 - [In Development](#in-development)
 - [Issues and Roadmap](#issues-and-roadmap)
 - [Troubleshooting](#troubleshooting)
-- [Credits](#credits] 
+- [Credits](#credits)
  
 
 # Gists.cli
