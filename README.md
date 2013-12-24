@@ -30,13 +30,12 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 
 I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
 
-The primary goal of this application was to create something designed specifically to use to capture notes, links, snippets etc. 
-while being easy to use requiring minimum typing. In addition to general support to view, download, edit and delete your Gists, 
-the application attempts to consider a variety scenarios -
+The primary goal is to create something designed specifically to capture quick notes/links while requiring minimum typing.
+In addition to conventional view, download, edit and delete support, the application attempts to consider a variety scenarios -
 
 - Append - Ability to append text to a Gist instead of having to download, edit and update.
-- iOS support - [Pythonista](http://omz-software.com/pythonista/) is pretty damn cool. 
-- VGA terminals - Using a mouse to copy/paste Gists IDs is great, but when a mouse id not handy index ids can be used instead of a Gist IDs. 
+- iOS support - [Pythonista](http://omz-software.com/pythonista/) is pretty damn cool. Use [Pypi.py](https://gist.github.com/anonymous/5243199) or [Pipista](https://gist.github.com/pudquick/4116558)
+- VGA terminals - Using a mouse to copy/paste Gists IDs is great, but when a mouse is not handy index number can be used instead of a Gist IDs. 
   - Use `gists .1` or `gists :1` or `gists %1` to view the first Gist. Easier but less explicit than `gists 233HSHS2233`
 - Executing without download - You can pipe the output from the application to an interpreter as appropriate. eg. `gists 1111 | sh`
 - Each command/action has aliases/formats to suit your preferences.
