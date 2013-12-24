@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 readme = open('README.md', 'r').read()
 setup(
     name='gists.cli',
-    version='0.25',
+    version='0.251',
     url='https://github.com/khilnani/gists.cli',
     license='GPLv2',
     author='khilnani',

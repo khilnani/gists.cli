@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import os, log, sys, defaults
+import os, log, sys, defaults, platform
 
 #-------------------------------------------
 
@@ -21,6 +21,30 @@ def argv ( ids ):
       return True
   # print "util.argv False"
   return False
+
+#-------------------------------------------
+
+def isIOS ():
+  log.debug ("platform.system: {0} platform.machine: {1}".format(platform.system(), platform.machine()))
+  return platform.system() == 'Darwin' and platform.machine().startswith('iP')
+
+#-------------------------------------------
+
+def isMac ():
+  log.debug ("platform.system: {0} platform.machine: {1}".format(platform.system(), platform.machine()))
+  return platform.system() == 'Darwin' and not platform.machine().startswith('iP')
+
+#-------------------------------------------
+
+def isLinux ():
+  log.debug ("platform.system: {0} platform.machine: {1}".format(platform.system(), platform.machine()))
+  return platform.system() == 'Linux' or platform.system() == 'Linux2'
+
+#-------------------------------------------
+
+def isWindows():
+  log.debug ("platform.system: {0} platform.machine: {1}".format(platform.system(), platform.machine()))
+  return platform.system() == 'Windows'
 
 #-------------------------------------------
 

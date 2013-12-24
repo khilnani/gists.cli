@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
-import sys, os.path, json, getpass, requests, log
+import sys, os.path, json, getpass, requests, log, util
 
 
 #-------------------------------------------
 # Config
 
 GITHUB_API = "https://api.github.com"
-HOME = os.path.expanduser('~')
+HOME_DIR = '~/Documents' if util.isIOS() == True else '~'
+HOME = os.path.expanduser(HOME_DIR)
 TOKENFILE = '/.gists'                # first line with TOKEN. Checked first.
 CREDENTIALS = '/.git-credentials'   # Uses first entry. Format: https://USER:TOKEN@github.com Checked second. 
 
