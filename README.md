@@ -228,7 +228,6 @@ If you would like to contribute changes to the code base
   - Virtual Box
     - Install VirtualBox - https://www.virtualbox.org/wiki/Downloads to download/install
 - Run
-  -  Change directory to `./_vagrant`
   -  Run `vagrant up` to install both CentOS6.5 and Ubuntu, or`vagrant up centos` or `vagrant up ubuntu` - start the VMs
     - If my Boxes are not already installed, they will be downloaded and installed
   -  Run `vagrant ssh centos` or `vagrant ssh ubuntu` - to ssh over
