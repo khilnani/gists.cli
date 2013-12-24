@@ -1,31 +1,47 @@
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
- -
- - [Gists.cli](#gistscli)
- - [For the Casual User](#for-the-casual-user)
-   - [Installation](#installation)
-   - [Authentication](#authentication)
-   - [Usage](#usage)
- - [For The Advanced User](#for-the-advanced-user)
-   - [Tips](#tips)
-   - [Usage](#usage-1)
- - [For the Developer](#for-the-developer)
-   - [Installation](#installation-1)
-   - [Non-Mac/OS X System Testing](#non-macos-x-system-testing)
- - [In Development](#in-development)
- - [Issues and Roadmap](#issues-and-roadmap)
- - [Troubleshooting](#troubleshooting)
- 
+
+- [Gists.cli](#gistscli)
+- [Overview](#overview)
+- [For the Casual User](#for-the-casual-user)
+  - [Installation](#installation)
+  - [Authentication](#authentication)
+  - [Usage](#usage)
+- [For The Advanced User](#for-the-advanced-user)
+  - [Tips](#tips)
+  - [Usage](#usage-1)
+- [For the Developer](#for-the-developer)
+  - [Installation](#installation-1)
+  - [Non-Mac/OS X System Testing](#non-macos-x-system-testing)
+- [In Development](#in-development)
+- [Issues and Roadmap](#issues-and-roadmap)
+- [Troubleshooting](#troubleshooting)
+- [Credits](#credits] 
  
 
 # Gists.cli
-
-
-> I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
 
 An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, search and backup your Gists. 
 
 - Github - https://github.com/khilnani/gists.cli 
 - Python Package - https://pypi.python.org/pypi/gists.cli
+
+# Overview
+
+
+I'm a Developer who uses VI and the like. iPad and iPhone apps are great, but when I really need a Gist i'm at the command line. 
+
+The primary goal of this application was to create something designed specifically to use to capture notes, links, snippets etc. 
+while being easy to use requiring minimum typing. In addition to general support to view, download, edit and delete your Gists, 
+the application attempts to consider a variety scenarios -
+
+- Append - Ability to append text to a Gist instead of having to download, edit and update.
+- iOS support - [Pythonista](http://omz-software.com/pythonista/) is pretty damn cool. 
+- VGA terminals - Using a mouse to copy/paste Gists IDs is great, but when a mouse id not handy index ids can be used instead of a Gist IDs. 
+  - Use `gists .1` or `gists :1` or `gists %1` to view the first Gist. Easier but less explicit than `gists 233HSHS2233`
+- Executing without download - You can pipe the output from the application to an interpreter as appropriate. eg. `gists 1111 | sh`
+- Each command/action has aliases/formats to suit your preferences.
+  - Use `gists --help` or `gists -h` if you prefer standard CLI optiions, or just `gists help` or `gists h` if you want to type less
+
 
 # For the Casual User
 
@@ -44,7 +60,7 @@ An easy to use CLI to manage *your* GitHub Gists. Create, edit, append, view, se
 - By default the application will attempt to use Basic Auth to authenticate i.e. will prompt for username/password each time it is run.
 - If the file `~/.git-credentials` is available, it will use the first OAuth token entry. 
 - If the file  `~/.gists` with a Github OAuth token is found, it will be given preference over the above two mechanisms.
-- Run `gists token|t` to avoid the username/password prompt and to use an OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
+- Run `gists token|--token|t|-t` to avoid the username/password prompt and to use an OAuth Token other than `~/.git-credentials`. Saves to `~/.gists`.
 
 ## Usage
 
@@ -86,6 +102,7 @@ To avoid the Public/private Gist type prompt -
 
 
 # For The Advanced User
+
 
 ## Tips
 
@@ -232,4 +249,13 @@ If you would like to contribute changes to the code base
 > AttributeError: VerifiedHTTPSConnection instance has no attribute '_tunnel_host
 
 - Running `sudo pip install requests==1.2.3` resolves the issue. The requests 2.0 library uses urllib3 that uses some capabilities only available in Python 2.6.3
+
+# Credits
+
+- Author - Nik Khilnani - http://khilnani.org
+- Feedback and Spellcheck - Alexander - https://github.com/alexander-bzz
+- Stack Overflow - http://stackoverflow.com/questions/tagged/python
+- Pythonista Forums - https://omz-forums.appspot.com/pythonista/post/4691117899513856
+
+
 
