@@ -183,10 +183,10 @@ If you like to type, or be specific you can also use the command line option. Yo
 
 **Append to a Gist**
 
-> If Description or Content is '?', that field will be skipped.
-  > eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
-  > eg. `gists 223322 "Updated Description ?` will only update the Description
-> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+> - If Description or Content is '?', that field will be skipped.
+>   - eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
+>   - eg. `gists 223322 "Updated Description ?` will only update the Description
+> - ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
 Without specifiying a specific action, the following will result in an Append. 
 
@@ -207,10 +207,10 @@ For more control/specificity
 
 **Update**
 
-> If Description or Content is '?', that field will be skipped.
-  > eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
-  > eg. `gists 223322 "Updated Description ?` will only update the Description
-> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+> - If Description or Content is '?', that field will be skipped.
+>   - eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
+>   - eg. `gists 223322 "Updated Description ?` will only update the Description
+> - ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
 *A file in a Gist wil be updated only if the file name sent is an exact match. If not file name match is found, a new file is added to the Gist.*
 
