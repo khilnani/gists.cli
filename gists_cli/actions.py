@@ -350,6 +350,8 @@ def help ():
   print ''
   print 'Author: Nik Khilnani - https://github.com/khilnani/gists.cli'
   print ''
+  print "Note - GIST_ID can be a Gist ID or Index ID (of the Gist in the List view)."
+  print "Index is 1 based and must be in the format '#N', '%N' , '.N' or ':N'."
 
   table = Texttable(max_width=defaults.max_width)
   table.set_deco(Texttable.HEADER | Texttable.HLINES)
@@ -370,9 +372,9 @@ def help ():
 
   table.add_row( _getHelpTableRow("New", '[PUBLIC_BOOL] [DESCRIPTION] [CONTENT|FILE]', help='Create a new Gist. Will prompt for Public/Private, Description etc. if not provided as arguments. Default is Private.') )
 
-  table.add_row( _getHelpTableRow("Update", help='Update the content of a Gist. NOT IMPLEMENTED') )
+  table.add_row( _getHelpTableRow("Append", 'GIST_ID [DESCRIPTION] CONTENT|FILE', help="Will append to each file in a Gist. Use '?' to keep current value.") )
 
-  table.add_row( _getHelpTableRow("Append", help='Will append  content to a Gist. NOT IMPLEMENTED') )
+  table.add_row( _getHelpTableRow("Update", 'GIST_ID [DESCRIPTION] CONTENT|FILE', help="Update the content of a Gist if a file name match is found. If not, a new file is added. Use '?' to keep current value.") )
 
   table.add_row( _getHelpTableRow("Delete", help='Delete a Gist. NOT IMPLEMENTED') )
 
