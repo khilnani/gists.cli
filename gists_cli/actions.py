@@ -24,6 +24,32 @@ def updateCredentials ():
 
 #-------------------------------------------
 
+def _get_id_for_index(id):
+  log.debug("_get_id_for_index: " + str(id))
+
+  _id = ''
+  if id[0] in _cmds['#']:
+    index = -1
+    try:
+      index = int(id[1:])
+    except ValueError:
+      log.error('Please use a valid number as the index.')
+      return _id
+
+    log.debug("Using index: " + str(index))
+    api.getCredentials()
+    url = "/gists"
+    gists = api.get(url)
+    for (i, gist) in enumerate(gists):
+      log.debug("Checking...  gist {0} at index: {1} == {2} ?".format(gist['id'], (i+1), index)) 
+      if i+1 == index:
+        _id = gist['id']
+        log.debug("Found Gist: {0} at index: {1}".format(_id, index))
+        break
+  return _id
+
+#-------------------------------------------
+
 def list ():
   api.getCredentials()
   log.debug ("Command: List.")
@@ -99,38 +125,8 @@ def new (public=None,description=None,content=None,filename=None):
   gist = api.post(url, data=data)
 
   pub_str = 'Public' if gist['public'] else 'Private'
-  print "{0} Gist created with Id '{1}' and Url: {2}".format(pub_str, gist['id'], gist['html_url'])
+  print "{0} Gist created:Id '{1}' and Url: {2}".format(pub_str, gist['id'], gist['html_url'])
 
-
-#-------------------------------------------
-
-def update (id):
-  api.getCredentials()
-  log.debug ("Command: Update: " + id)
-
-#-------------------------------------------
-
-def append (id):
-  api.getCredentials()
-  log.debug ("Command: Append: " + id)
-
-#-------------------------------------------
-
-def delete (id):
-  api.getCredentials()
-  log.debug ("Command: Delete: " + id)
-
-#-------------------------------------------
-
-def backup ():
-  api.getCredentials()
-  log.debug ("Command: Backup.")
-
-#-------------------------------------------
-
-def search ():
-  api.getCredentials()
-  log.debug ("Command: Search.")
 
 #-------------------------------------------
 
@@ -141,32 +137,6 @@ def _get_gist(id):
   url = "/gists/" + id
   gist = api.get(url)
   return gist
-
-#-------------------------------------------
-
-def _get_id_for_index(id):
-  log.debug("_get_id_for_index: " + str(id))
-
-  _id = ''
-  if id[0] in _cmds['#']:
-    index = -1
-    try:
-      index = int(id[1:])
-    except ValueError:
-      log.error('Please use a valid number as the index.')
-      return _id
-
-    log.debug("Using index: " + str(index))
-    api.getCredentials()
-    url = "/gists"
-    gists = api.get(url)
-    for (i, gist) in enumerate(gists):
-      log.debug("Checking...  gist {0} at index: {1} == {2} ?".format(gist['id'], (i+1), index)) 
-      if i+1 == index:
-        _id = gist['id']
-        log.debug("Found Gist: {0} at index: {1}".format(_id, index))
-        break
-  return _id
 
 #-------------------------------------------
 
@@ -242,6 +212,139 @@ def get (id, path, fileName=''):
     else:
       print 'Ok. I won\'t download the Gist.'
 
+
+#-------------------------------------------
+
+def append (id, public=None,description=None,content=None,filename=None):
+  api.getCredentials()
+  log.debug ("Command: Append: id: '{0}' public: '{1}' description: '{2}' filename: '{3}' content: '{4}'.".format(id, str(public), str(description), str(filename), str(content)))
+
+  if id[0] in _cmds['#']:
+    id = _get_id_for_index(id)
+
+  if public == None:
+    if _supress:
+      public = defaults.public
+    else:
+      public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True, required=False) )
+
+  if description == None:
+    if _supress:
+      description = defaults.description
+    else:
+      description = util.readConsole(prompt='Description:', required=False)
+
+  if content == None and filename != None:
+    if os.path.isfile( filename ):
+      content = util.readFile(filename)
+    else:
+      print "Sorry, filename '{0}' is actually a Directory.".format(filename)
+      sys.exit(0)
+
+  if content == None:
+    if _supress:
+      content = defaults.content
+    else:
+      content = util.readConsole(required=False)
+
+  if filename == None:
+    filename = 'file.md'
+
+  log.debug ("Appending Gist " + id + " with content: \n" + content)
+
+  url = '/gists/' + id
+  
+  oldgist = _get_gist(id)
+  
+  if public != None:
+    oldgist['public'] = str(public).lower()
+  if description:
+    oldgist['description'] = description
+  if content:
+    for (file, data) in oldgist['files'].items():
+      oldgist['files'][file]['content'] = data['content'] + '\n' + content
+  log.debug ('Data: ' + str(oldgist))
+
+  gist = api.patch(url, data=oldgist)
+
+  pub_str = 'Public' if gist['public'] else 'Private'
+  print "{0} Gist appended: Id '{1}' and Url: {2}".format(pub_str, gist['id'], gist['html_url'])
+
+
+#-------------------------------------------
+
+def update (id, public=None,description=None,content=None,filename=None):
+  api.getCredentials()
+  log.debug ("Command: Update: id: '{0}' public: '{1}' description: '{2}' filename: '{3}' content: '{4}'.".format(id, str(public), str(description), str(filename), str(content)))
+
+  if id[0] in _cmds['#']:
+    id = _get_id_for_index(id)
+
+  if public == None:
+    if _supress:
+      public = defaults.public
+    else:
+      public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True, required=False) )
+
+  if description == None:
+    if _supress:
+      description = defaults.description
+    else:
+      description = util.readConsole(prompt='Description:', required=False)
+
+  if content == None and filename != None:
+    if os.path.isfile( filename ):
+      content = util.readFile(filename)
+    else:
+      print "Sorry, filename '{0}' is actually a Directory.".format(filename)
+      sys.exit(0)
+
+  if content == None:
+    if _supress:
+      content = defaults.content
+    else:
+      content = util.readConsole(required=False)
+
+  if filename == None:
+    filename = 'file.md'
+
+  log.debug ("Updating Gist " + id + " with content: \n" + content)
+
+  url = '/gists/' + id
+  data = {}
+  if public != None:
+    data['public'] = str(public).lower()
+  if description:
+    data['description'] = description
+  if content:
+    data['files'] = { os.path.basename(filename): { 'content': content } }
+  log.debug ('Data: ' + str(data))
+
+  gist = api.patch(url, data=data)
+
+  pub_str = 'Public' if gist['public'] else 'Private'
+  print "{0} Gist updated: Id '{1}' and Url: {2}".format(pub_str, gist['id'], gist['html_url'])
+
+#-------------------------------------------
+
+def delete (id):
+  api.getCredentials()
+  log.debug ("Command: Delete: " + id)
+
+  if id[0] in _cmds['#']:
+    id = _get_id_for_index(id)
+
+#-------------------------------------------
+
+def backup ():
+  api.getCredentials()
+  log.debug ("Command: Backup.")
+
+#-------------------------------------------
+
+def search ():
+  api.getCredentials()
+  log.debug ("Command: Search.")
 
 #-------------------------------------------
 

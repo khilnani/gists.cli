@@ -46,7 +46,7 @@ def getCredentials ():
     line = file.read().strip()
     token = line.split(':')[2].split('@')[0]
     log.debug ("Credentials: " + HOME + CREDENTIALS + " = " + token)
-  else:
+  elif username == None or password == None:
     log.debug ("Credentials: No token found.")
     username = raw_input("Username:")
     password = getpass.getpass()
@@ -89,6 +89,30 @@ def post (path, data={}, params={}):
     else:
       request = requests.post( url, auth=(username, password), params=params, data=data, headers=headers )
       log.debug ('API (Post): ' + request.url)
+    _checkStatus( request.status_code )
+    result = json.loads( request.text )
+  except Exception as e: 
+    print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e )
+    sys.exit(0)
+  return result
+
+#-------------------------------------------
+
+def patch (path, data={}, params={}):
+  global token, username, password
+  result = None
+  url = GITHUB_API + path
+  data = json.dumps(data)
+  log.debug ('Json data: ' + data)
+  headers = {'Content-type': 'application/x-www-form-urlencoded'}
+  try:
+    if token != None:
+      params['access_token'] = token
+      request = requests.patch( url, params=params, data=data, headers=headers )
+      log.debug ('API (Patch): ' + request.url)
+    else:
+      request = requests.patch( url, auth=(username, password), params=params, data=data, headers=headers )
+      log.debug ('API (Patch): ' + request.url)
     _checkStatus( request.status_code )
     result = json.loads( request.text )
   except Exception as e: 

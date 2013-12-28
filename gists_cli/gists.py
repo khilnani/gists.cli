@@ -124,21 +124,6 @@ def main ( ):
       actions.get( args[0], path=args[1] )
     elif len(args) == 3:
       actions.get( args[0], fileName=args[1], path=args[2] )
-  elif cmd in (_cmds['Append']):
-    _printNoImpl()
-    actions.append( args[0] )
-  elif cmd in (_cmds['Update']):
-    _printNoImpl()
-    actions.update( args[0] )
-  elif cmd in (_cmds['Delete']):
-    _printNoImpl()
-    actions.delete( args[0] )
-  elif cmd in (_cmds['Backup']):
-    _printNoImpl()
-    actions.backup( )
-  elif cmd in (_cmds['Search']):
-    _printNoImpl()
-    actions.search( )
   elif cmd in (_cmds['New']):
     # Each option will prompt for public/pvt and description. In silent mode, assumes private and no description.
     if len(args) == 0:
@@ -174,6 +159,91 @@ def main ( ):
         actions.new( public=util.parseBool( args[0] ), description=args[1], content=args[2] )
     else:
       _printNoMatch()
+  elif cmd in (_cmds['Append']):
+    # Each option will prompt for public/pvt and description.
+    if len(args) == 0:
+      _printNoMatch()
+    elif len(args) == 2: 
+      # append: id Boolean 
+      # append: id File
+      # append: id Content 
+      if util.parseBool( args[1] ) != None:
+        actions.append( args[0], public=util.parseBool( args[1] ) )
+      elif util.isFileOrDir(args[1]) == True:
+        actions.append( args[0], filename=args[1] )
+      else:
+        actions.append( args[0], content=args[1] )
+    elif len(args) == 3:
+      # append: id Boolean File
+      # append: id Boolean Content
+      # append: id Description File
+      # append: id Description Content
+      if util.parseBool( args[1] ) != None:
+        if util.isFileOrDir(args[2]) == True:
+          actions.append( args[0], public=util.parseBool( args[1] ), filename=args[2] )
+        else:
+          actions.append( args[0], public=util.parseBool( args[1] ), content=args[2] )
+      else:
+        if util.isFileOrDir(args[2]) == True:
+          actions.append( args[0], description=args[1], filename=args[2] )
+        else:
+          actions.append( args[0], description=args[1], content=args[2] )
+    elif len(args) == 4 and util.parseBool( args[1] ) != None:
+      # append: id Boolean Description File
+      # append: id Boolean Description Content 
+      if util.isFileOrDir(args[3]) == True:
+        actions.append( args[0], public=util.parseBool( args[1] ), description=args[2], filename=args[3] )
+      else:
+        actions.append( args[0], public=util.parseBool( args[1] ), description=args[2], content=args[3] )
+    else:
+      actions.append( args[0] )
+  elif cmd in (_cmds['Update']):
+    # Each option will prompt for public/pvt and description.
+    if len(args) == 0:
+      _printNoMatch()
+    elif len(args) == 2: 
+      # append: id Boolean 
+      # append: id File
+      # append: id Content 
+      if util.parseBool( args[1] ) != None:
+        actions.update( args[0], public=util.parseBool( args[1] ) )
+      elif util.isFileOrDir(args[1]) == True:
+        actions.update( args[0], filename=args[1] )
+      else:
+        actions.update( args[0], content=args[1] )
+    elif len(args) == 3:
+      # append: id Boolean File
+      # append: id Boolean Content
+      # append: id Description File
+      # append: id Description Content
+      if util.parseBool( args[1] ) != None:
+        if util.isFileOrDir(args[2]) == True:
+          actions.update( args[0], public=util.parseBool( args[1] ), filename=args[2] )
+        else:
+          actions.update( args[0], public=util.parseBool( args[1] ), content=args[2] )
+      else:
+        if util.isFileOrDir(args[2]) == True:
+          actions.update( args[0], description=args[1], filename=args[2] )
+        else:
+          actions.update( args[0], description=args[1], content=args[2] )
+    elif len(args) == 4 and util.parseBool( args[1] ) != None:
+      # append: id Boolean Description File
+      # append: id Boolean Description Content 
+      if util.isFileOrDir(args[3]) == True:
+        actions.update( args[0], public=util.parseBool( args[1] ), description=args[2], filename=args[3] )
+      else:
+        actions.update( args[0], public=util.parseBool( args[1] ), description=args[2], content=args[3] )
+    else:
+      actions.update( args[0] )
+  elif cmd in (_cmds['Delete']):
+    _printNoImpl()
+    actions.delete( args[0] )
+  elif cmd in (_cmds['Backup']):
+    _printNoImpl()
+    actions.backup( )
+  elif cmd in (_cmds['Search']):
+    _printNoImpl()
+    actions.search( )
   else:
     _printNoMatch()
 

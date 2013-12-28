@@ -68,7 +68,10 @@ def readConsole(prompt='Please type/paste content:', required=True, bool=False):
     content = readConsole (prompt, required, bool)
   if bool:
     if parseBool(content) == None:
-      content = readConsole (prompt, required, bool)
+      if required == True:
+        content = readConsole (prompt, required, bool)
+      else:
+        content = None
   return content
 
 #-------------------------------------------
