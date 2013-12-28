@@ -114,7 +114,7 @@ def new (public=None,description=None,content=None,filename=None):
       content = util.readConsole()
 
   if filename == None:
-    filename = 'file.md'
+    filename = defaults.file
 
   log.debug ("Creating Gist using content: \n" + content)
 
@@ -215,18 +215,12 @@ def get (id, path, fileName=''):
 
 #-------------------------------------------
 
-def append (id, public=None,description=None,content=None,filename=None):
+def append (id, description=None,content=None,filename=None):
   api.getCredentials()
-  log.debug ("Command: Append: id: '{0}' public: '{1}' description: '{2}' filename: '{3}' content: '{4}'.".format(id, str(public), str(description), str(filename), str(content)))
+  log.debug ("Command: Append: id: '{0}' description: '{1}' filename: '{2}' content: '{3}'.".format(id, str(description), str(filename), str(content)))
 
   if id[0] in _cmds['#']:
     id = _get_id_for_index(id)
-
-  if public == None:
-    if _supress:
-      public = defaults.public
-    else:
-      public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True, required=False) )
 
   if description == None:
     if _supress:
@@ -248,7 +242,7 @@ def append (id, public=None,description=None,content=None,filename=None):
       content = util.readConsole(required=False)
 
   if filename == None:
-    filename = 'file.md'
+    filename = defaults.file
 
   log.debug ("Appending Gist " + id + " with content: \n" + content)
 
@@ -256,8 +250,6 @@ def append (id, public=None,description=None,content=None,filename=None):
   
   oldgist = _get_gist(id)
   
-  if public != None:
-    oldgist['public'] = str(public).lower()
   if description:
     oldgist['description'] = description
   if content:
@@ -273,18 +265,12 @@ def append (id, public=None,description=None,content=None,filename=None):
 
 #-------------------------------------------
 
-def update (id, public=None,description=None,content=None,filename=None):
+def update (id, description=None,content=None,filename=None):
   api.getCredentials()
-  log.debug ("Command: Update: id: '{0}' public: '{1}' description: '{2}' filename: '{3}' content: '{4}'.".format(id, str(public), str(description), str(filename), str(content)))
+  log.debug ("Command: Update: id: '{0}' description: '{1}' filename: '{2}' content: '{3}'.".format(id, str(description), str(filename), str(content)))
 
   if id[0] in _cmds['#']:
     id = _get_id_for_index(id)
-
-  if public == None:
-    if _supress:
-      public = defaults.public
-    else:
-      public = util.parseBool( util.readConsole(prompt='Public Gist? (y/n):', bool=True, required=False) )
 
   if description == None:
     if _supress:
@@ -306,14 +292,12 @@ def update (id, public=None,description=None,content=None,filename=None):
       content = util.readConsole(required=False)
 
   if filename == None:
-    filename = 'file.md'
+    filename = defaults.file
 
   log.debug ("Updating Gist " + id + " with content: \n" + content)
 
   url = '/gists/' + id
   data = {}
-  if public != None:
-    data['public'] = str(public).lower()
   if description:
     data['description'] = description
   if content:

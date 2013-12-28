@@ -164,37 +164,19 @@ def main ( ):
     if len(args) == 0:
       _printNoMatch()
     elif len(args) == 2: 
-      # append: id Boolean 
       # append: id File
       # append: id Content 
-      if util.parseBool( args[1] ) != None:
-        actions.append( args[0], public=util.parseBool( args[1] ) )
-      elif util.isFileOrDir(args[1]) == True:
+      if util.isFileOrDir(args[1]) == True:
         actions.append( args[0], filename=args[1] )
       else:
         actions.append( args[0], content=args[1] )
     elif len(args) == 3:
-      # append: id Boolean File
-      # append: id Boolean Content
       # append: id Description File
       # append: id Description Content
-      if util.parseBool( args[1] ) != None:
-        if util.isFileOrDir(args[2]) == True:
-          actions.append( args[0], public=util.parseBool( args[1] ), filename=args[2] )
-        else:
-          actions.append( args[0], public=util.parseBool( args[1] ), content=args[2] )
+      if util.isFileOrDir(args[2]) == True:
+        actions.append( args[0], description=args[1], filename=args[2] )
       else:
-        if util.isFileOrDir(args[2]) == True:
-          actions.append( args[0], description=args[1], filename=args[2] )
-        else:
-          actions.append( args[0], description=args[1], content=args[2] )
-    elif len(args) == 4 and util.parseBool( args[1] ) != None:
-      # append: id Boolean Description File
-      # append: id Boolean Description Content 
-      if util.isFileOrDir(args[3]) == True:
-        actions.append( args[0], public=util.parseBool( args[1] ), description=args[2], filename=args[3] )
-      else:
-        actions.append( args[0], public=util.parseBool( args[1] ), description=args[2], content=args[3] )
+        actions.append( args[0], description=args[1], content=args[2] )
     else:
       actions.append( args[0] )
   elif cmd in (_cmds['Update']):
@@ -202,37 +184,19 @@ def main ( ):
     if len(args) == 0:
       _printNoMatch()
     elif len(args) == 2: 
-      # append: id Boolean 
       # append: id File
       # append: id Content 
-      if util.parseBool( args[1] ) != None:
-        actions.update( args[0], public=util.parseBool( args[1] ) )
-      elif util.isFileOrDir(args[1]) == True:
+      if util.isFileOrDir(args[1]) == True:
         actions.update( args[0], filename=args[1] )
       else:
         actions.update( args[0], content=args[1] )
     elif len(args) == 3:
-      # append: id Boolean File
-      # append: id Boolean Content
       # append: id Description File
       # append: id Description Content
-      if util.parseBool( args[1] ) != None:
-        if util.isFileOrDir(args[2]) == True:
-          actions.update( args[0], public=util.parseBool( args[1] ), filename=args[2] )
-        else:
-          actions.update( args[0], public=util.parseBool( args[1] ), content=args[2] )
+      if util.isFileOrDir(args[2]) == True:
+        actions.update( args[0], description=args[1], filename=args[2] )
       else:
-        if util.isFileOrDir(args[2]) == True:
-          actions.update( args[0], description=args[1], filename=args[2] )
-        else:
-          actions.update( args[0], description=args[1], content=args[2] )
-    elif len(args) == 4 and util.parseBool( args[1] ) != None:
-      # append: id Boolean Description File
-      # append: id Boolean Description Content 
-      if util.isFileOrDir(args[3]) == True:
-        actions.update( args[0], public=util.parseBool( args[1] ), description=args[2], filename=args[3] )
-      else:
-        actions.update( args[0], public=util.parseBool( args[1] ), description=args[2], content=args[3] )
+        actions.update( args[0], description=args[1], content=args[2] )
     else:
       actions.update( args[0] )
   elif cmd in (_cmds['Delete']):

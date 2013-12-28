@@ -4,7 +4,8 @@
 
 public = False
 description = ""
-content = "No content"
+content = "No Content"
+file = "file.md"
 download = True
 max_width = 100
 
