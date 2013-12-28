@@ -250,9 +250,9 @@ def append (id, description=None,content=None,filename=None):
   
   oldgist = _get_gist(id)
   
-  if description:
+  if description and description != '?':
     oldgist['description'] = description
-  if content:
+  if content and content != '?':
     for (file, data) in oldgist['files'].items():
       oldgist['files'][file]['content'] = data['content'] + '\n' + content
   log.debug ('Data: ' + str(oldgist))
@@ -298,9 +298,9 @@ def update (id, description=None,content=None,filename=None):
 
   url = '/gists/' + id
   data = {}
-  if description:
+  if description and description != '?':
     data['description'] = description
-  if content:
+  if content and content != '?':
     data['files'] = { os.path.basename(filename): { 'content': content } }
   log.debug ('Data: ' + str(data))
 

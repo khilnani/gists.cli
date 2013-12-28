@@ -59,6 +59,10 @@ def _deriveCmd( args ):
       # create/new Boolean, Description and File
       # create/new Boolean, Description and Content
       cmd = "new"
+  elif alen == 3 and util.parseBool( args[0] ) == None and util.isGistIdent(args[0]) == True:
+      # append ID, Description and File
+      # append ID, Description and Content 
+      cmd = "append"
   return cmd
 
 #-------------------------------------------

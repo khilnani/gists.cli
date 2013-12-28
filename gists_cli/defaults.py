@@ -5,7 +5,7 @@
 public = False
 description = ""
 content = "No Content"
-file = "file.md"
+file = "default.md"
 download = True
 max_width = 100
 
