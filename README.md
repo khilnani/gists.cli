@@ -98,6 +98,14 @@ To avoid the Public/private Gist type prompt -
 - `gists Bool FILE`
 - `gists Bool "Content"`
 
+**Append to a Gist**
+
+- `gists ID Description FILE`
+- `gists ID Description "Content"`
+
+> If Description or Content is '?', that field will be skipped.
+> eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
+> eg. `gists 223322 "Updated Description ?` will only update the Description
 
 
 # For The Advanced User
@@ -160,7 +168,7 @@ Without specifying a command (eg. create, new), the application will trying to f
 
 If you like to type, or be specific you can also use the command line option. You will be prompted for stuff like Gist type, Description and Gist Content etc as needed.
 
-**OPTION** = `new|--new|n|-n|create|--create|c|-c`
+*OPTION* = `new|--new|n|-n|create|--create|c|-c`
 
 - `gists OPTION`
 - `gists OPTION FILE`
@@ -172,14 +180,48 @@ If you like to type, or be specific you can also use the command line option. Yo
 - `gists OPTION Bool "Description" FILE`
 - `gists OPTION Bool "Description" "Content"`
 
-# In Development
+
+**Append to a Gist**
+
+> If Description or Content is '?', that field will be skipped.
+  > eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
+  > eg. `gists 223322 "Updated Description ?` will only update the Description
+> ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+
+Without specifiying a specific action, the following will result in an Append. 
+
+*If a Gist contains more than one file, each file will be appended*
+
+- `gists ID Description FILE`
+- `gists ID Description "Content"`
+
+For more control/specificity
+
+*OPTION* = `append|--append|a|-a`
+
+- `gists OPTION ID File`
+- `gists OPTION ID Content`
+- `gists OPTION ID Description File`
+- `gists OPTION ID Description Content`
+
 
 **Update**
 
-- `gists update|u|--update|-u ID [PARAMS]` - Update a Gist. Content sent via Console, Clipboard or File.
-- `gists append|a|--append|-a ID [PARAMS]` - Append to a Gist. Content sent via Console, Clipboard or File.
-
+> If Description or Content is '?', that field will be skipped.
+  > eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
+  > eg. `gists 223322 "Updated Description ?` will only update the Description
 > ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+
+*A file in a Gist wil be updated only if the file name sent is an exact match. If not file name match is found, a new file is added to the Gist.*
+
+*OPTION* = `update|--update|u|-u`
+
+- `gists OPTION ID File`
+- `gists OPTION ID Content`
+- `gists OPTION ID Description File`
+- `gists OPTION ID Description Content`
+
+# In Development
 
 **Delete**
 
