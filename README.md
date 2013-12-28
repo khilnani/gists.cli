@@ -100,13 +100,15 @@ To avoid the Public/private Gist type prompt -
 
 **Append to a Gist**
 
+> - If Description or Content is '?', that field will be skipped.
+>   - eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
+>   - eg. `gists 223322 "Updated Description ?` will only update the Description
+> - ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+
+*NOTE - If a Gist contains more than one file, each file will have a new line appended with the content sent.*
+
 - `gists ID Description FILE`
 - `gists ID Description "Content"`
-
-> If Description or Content is '?', that field will be skipped.
-> eg. `gists 223322 ? "New link to cool site"` will append a new line but will not update the Description
-> eg. `gists 223322 "Updated Description ?` will only update the Description
-
 
 # For The Advanced User
 
