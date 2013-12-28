@@ -190,7 +190,7 @@ If you like to type, or be specific you can also use the command line option. Yo
 
 Without specifiying a specific action, the following will result in an Append. 
 
-*If a Gist contains more than one file, each file will be appended*
+*NOTE - If a Gist contains more than one file, each file will have a new line appended with the content sent.*
 
 - `gists ID Description FILE`
 - `gists ID Description "Content"`
@@ -212,7 +212,7 @@ For more control/specificity
 >   - eg. `gists 223322 "Updated Description ?` will only update the Description
 > - ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
-*A file in a Gist wil be updated only if the file name sent is an exact match. If not file name match is found, a new file is added to the Gist.*
+*NOTE - A file in a Gist will be updated only if the file name sent is an exact match. If not file name match is found, a new file is added to the Gist.*
 
 *OPTION* = `update|--update|u|-u`
 
