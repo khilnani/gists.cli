@@ -47,7 +47,10 @@ In addition to conventional view, download, edit and delete support, the applica
 ## Installation
 
 - Install the Python package manager PIP (http://www.pip-installer.org/)
-  - Run `yum install python-setuptools` If you are on a fresh Linux server/VM
+  - Linux
+    - Run `yum install python-setuptools`
+  - Mac OS X (Mavericks)
+    - Run `curl -v https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | sudo python` or, follow instructions at [https://pypi.python.org/pypi/setuptools#installation-instructions]
   - Run `sudo easy_install pip`
 - Once PIP is installed, 
   - Run `sudo pip install gists.cli`
