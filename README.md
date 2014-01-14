@@ -57,12 +57,6 @@ In addition to conventional view, download, edit and delete support, the applica
   - Run `sudo pip install gists.cli`
   - Run `sudo pip install gists.cli --upgrade` if upgrading.
 
-## Trouble Shooting
-
-> - If you get the error `Wheel installs require setuptools >= 0.8 for dist-info support` or `ImportError: No module named pkg_resources`, please ensure you have upgraded setup tools. See the 'Install Python Setup Tools' section above to upgrade setup tools.
-> - This dependency was introduced in Pypi 1.5 and will be removed in Pypi 1.5.1 [http://pip.readthedocs.org/en/1.5.X/news.html#]. 
-
-
 ## Authentication
 
 
@@ -296,11 +290,10 @@ If you would like to contribute changes to the code base
 
 # Troubleshooting
 
-- If you get the error below, this is likely due to you running Python 2.6.2 or earlier. 
-
-> AttributeError: VerifiedHTTPSConnection instance has no attribute '_tunnel_host
-
-- Running `sudo pip install requests==1.2.3` resolves the issue. The requests 2.0 library uses urllib3 that uses some capabilities only available in Python 2.6.3
+- If you get the error `Wheel installs require setuptools >= 0.8 for dist-info support` or `ImportError: No module named pkg_resources`, please ensure you have upgraded setup tools. See the 'Install Python Setup Tools' section above to upgrade setup tools.
+  - This dependency was introduced in Pypi 1.5 and will be removed in Pypi 1.5.1 [http://pip.readthedocs.org/en/1.5.X/news.html#]. 
+- If you get the error `AttributeError: VerifiedHTTPSConnection instance has no attribute '_tunnel_host`, this is likely due to you running Python 2.6.2 or earlier. 
+  - Running `sudo pip install requests==1.2.3` resolves the issue. The requests 2.0 library uses urllib3 that uses some capabilities only available in Python 2.6.3
 
 # Credits
 
