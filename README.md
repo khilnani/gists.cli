@@ -57,7 +57,9 @@ In addition to conventional view, download, edit and delete support, the applica
   - Run `sudo pip install gists.cli`
   - Run `sudo pip install gists.cli --upgrade` if upgrading.
 
-> - If you get the error `Wheel installs require setuptools >= 0.8 for dist-info support`, please ensure you have upgraded setup tools. See the 'Install Python Setup Tools' section above to upgrade setup tools.
+## Trouble Shooting
+
+> - If you get the error `Wheel installs require setuptools >= 0.8 for dist-info support` or `ImportError: No module named pkg_resources`, please ensure you have upgraded setup tools. See the 'Install Python Setup Tools' section above to upgrade setup tools.
 > - This dependency was introduced in Pypi 1.5 and will be removed in Pypi 1.5.1 [http://pip.readthedocs.org/en/1.5.X/news.html#]. 
 
 
