@@ -54,51 +54,26 @@ def getCredentials ():
 #-------------------------------------------
 
 def get (path, params={}):
-  global token, username, password
-  result = None
-  url = GITHUB_API + path
-  try:
-    if token != None:
-      params['access_token'] = token
-      request = requests.get( url, params=params )
-      log.debug ('API (Get): ' + request.url)
-    else:
-      request = requests.get( url, auth=(username, password), params=params )
-      log.debug ('API (Get): ' + request.url)
-    _checkStatus( request.status_code )
-    result = json.loads( request.text )
-  except Exception as e:
-    print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e ) 
-    sys.exit(0)
-  return result  
+  return call('get', path, params=params)
 
 #-------------------------------------------
 
 def post (path, data={}, params={}):
-  global token, username, password
-  result = None
-  url = GITHUB_API + path
-  data = json.dumps(data)
-  log.debug ('Json data: ' + data)
-  headers = {'Content-type': 'application/x-www-form-urlencoded'}
-  try:
-    if token != None:
-      params['access_token'] = token
-      request = requests.post( url, params=params, data=data, headers=headers )
-      log.debug ('API (Post): ' + request.url)
-    else:
-      request = requests.post( url, auth=(username, password), params=params, data=data, headers=headers )
-      log.debug ('API (Post): ' + request.url)
-    _checkStatus( request.status_code )
-    result = json.loads( request.text )
-  except Exception as e: 
-    print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e )
-    sys.exit(0)
-  return result
+  return call('post', path, data, params)
 
 #-------------------------------------------
 
 def patch (path, data={}, params={}):
+  return call('patch', path, data, params)
+
+#-------------------------------------------
+
+def delete (path, data={}, params={}):
+  return call('delete', path,  params)
+
+#-------------------------------------------
+
+def call (meth, path, data={}, params={}):
   global token, username, password
   result = None
   url = GITHUB_API + path
@@ -108,17 +83,33 @@ def patch (path, data={}, params={}):
   try:
     if token != None:
       params['access_token'] = token
-      request = requests.patch( url, params=params, data=data, headers=headers )
-      log.debug ('API (Patch): ' + request.url)
+      if meth == 'get':
+        request = requests.get( url, params=params )
+      if meth == 'post':
+        request = requests.post( url, params=params, data=data, headers=headers )
+      if meth == 'patch':
+        request = requests.patch( url, params=params, data=data, headers=headers )
+      if meth == 'delete':
+        request = requests.delete( url, params=params )
+      log.debug ('API ({0}): {1}'.format(meth, request.url))
     else:
-      request = requests.patch( url, auth=(username, password), params=params, data=data, headers=headers )
-      log.debug ('API (Patch): ' + request.url)
+      if meth == 'get':
+        request = requests.get( url, auth=(username, password), params=params )
+      if meth == 'post':
+        request = requests.post( url, auth=(username, password), params=params, data=data, headers=headers )
+      if meth == 'patch':
+        request = requests.patch( url, auth=(username, password), params=params, data=data, headers=headers )
+      if meth == 'delete':
+        request = requests.delete( url, auth=(username, password), params=params )
+      log.debug ('API ({0}): {1}'.format(meth, request.url))
     _checkStatus( request.status_code )
-    result = json.loads( request.text )
+    if meth != 'delete':
+      result = json.loads( request.text )
   except Exception as e: 
     print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e )
     sys.exit(0)
   return result
+
 
 #-------------------------------------------
 

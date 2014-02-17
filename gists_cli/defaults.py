@@ -8,6 +8,7 @@ content = "No Content"
 file = "default.md"
 download = True
 max_width = 100
+forceDelete = True
 
 cmds = {}
 cmds['#'] = ['#','.','%',':']

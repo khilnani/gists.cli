@@ -180,7 +180,7 @@ def get (id, path, fileName=''):
     for file in gist['files']:
       print ('  ' + file)
     dmsg = 'file(s)' if fileName == '' else "'" + fileName + "'"
-    confirm = raw_input ("Download {0} to (1) '{1}/' or (2) '{2}/'?: ".format(dmsg, path, target))
+    confirm = util.readConsole(prompt="Download {0} to (1) '{1}/' or (2) '{2}/'?: ".format(dmsg, path, target))
     if confirm in ('1', '2'):
       filesDownloaded = 0
       try:
@@ -245,8 +245,6 @@ def append (id, description=None,content=None,filename=None):
     filename = defaults.file
 
   log.debug ("Appending Gist " + id + " with content: \n" + content)
-
-  url = '/gists/' + id
   
   oldgist = _get_gist(id)
   
@@ -257,6 +255,7 @@ def append (id, description=None,content=None,filename=None):
       oldgist['files'][file]['content'] = data['content'] + '\n' + content
   log.debug ('Data: ' + str(oldgist))
 
+  url = '/gists/' + id
   gist = api.patch(url, data=oldgist)
 
   pub_str = 'Public' if gist['public'] else 'Private'
@@ -317,6 +316,23 @@ def delete (id):
 
   if id[0] in _cmds['#']:
     id = _get_id_for_index(id)
+
+  confirm = defaults.forceDelete
+  
+  if _supress == False:
+    gist = _get_gist(id)
+
+    print ('Gist \'{0}\'  Description: {1}'.format(id, gist['description']))
+    for file in gist['files']:
+      print ('  ' + file)
+    confirm = util.parseBool( util.readConsole(prompt='Delete Gist? (y/n):', required=False, bool=True) )
+
+  if confirm:
+    url = '/gists/' + id
+    api.delete(url)
+    print 'Gist deleted: {0}'.format(id)
+  else:
+    print 'I did not delete the Gist.'
 
 #-------------------------------------------
 

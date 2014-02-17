@@ -204,7 +204,6 @@ def main ( ):
     else:
       actions.update( args[0] )
   elif cmd in (_cmds['Delete']):
-    _printNoImpl()
     actions.delete( args[0] )
   elif cmd in (_cmds['Backup']):
     _printNoImpl()
