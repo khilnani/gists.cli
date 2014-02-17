@@ -59,6 +59,7 @@ In addition to conventional view, download, edit and delete support, the applica
 
 ## Authentication
 
+> Two factor authentication (SMS and Application) supported as of 0.400
 
 - By default the application will attempt to use Basic Auth to authenticate i.e. will prompt for username/password each time it is run.
 - If the file `~/.git-credentials` is available, it will use the first OAuth token entry. 
@@ -113,6 +114,10 @@ To avoid the Public/private Gist type prompt -
 
 - `gists ID Description FILE`
 - `gists ID Description "Content"`
+
+**Delete to a Gist**
+
+- `gists delete ID`
 
 # For The Advanced User
 
@@ -227,13 +232,13 @@ For more control/specificity
 - `gists OPTION ID Description File`
 - `gists OPTION ID Description Content`
 
-# In Development
-
 **Delete**
 
 - `gists delete|del|d|--delete|--del|-d ID` - Delete a Gist.
 
 > ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
+
+# In Development
 
 **Export/Backup**
 
