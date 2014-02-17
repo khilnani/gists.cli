@@ -59,7 +59,7 @@ In addition to conventional view, download, edit and delete support, the applica
 
 ## Authentication
 
-> Two factor authentication (SMS and Application) supported as of 0.400
+> Two factor authentication (SMS and Application) supported as of 0.350
 
 - By default the application will attempt to use Basic Auth to authenticate i.e. will prompt for username/password each time it is run.
 - If the file `~/.git-credentials` is available, it will use the first OAuth token entry. 
