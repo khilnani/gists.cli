@@ -56,7 +56,7 @@ In addition to conventional view, download, edit and delete support, the applica
 - Once PIP is installed, 
   - Run `sudo pip install gists.cli`
   - Run `sudo pip install gists.cli --upgrade` if upgrading.
-  - Check the installed version by running `pip show gists.cl`
+  - Check the installed version by running `pip show gists.cli`
 
 ## Authentication
 
