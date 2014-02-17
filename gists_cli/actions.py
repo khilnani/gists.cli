@@ -392,7 +392,7 @@ def help ():
 
   table.add_row( _getHelpTableRow("Update", 'GIST_ID [DESCRIPTION] CONTENT|FILE', help="Update the content of a Gist if a file name match is found. If not, a new file is added. Use '?' to keep current value.") )
 
-  table.add_row( _getHelpTableRow("Delete", help='Delete a Gist. NOT IMPLEMENTED') )
+  table.add_row( _getHelpTableRow("Delete", help='Delete a Gist.') )
 
   table.add_row( _getHelpTableRow("Backup", help='Backup or Export all Gists. NOT IMPLEMENTED') )
 
