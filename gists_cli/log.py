@@ -21,3 +21,6 @@ def debug (obj):
 def error (obj):
   print 'ERROR: ' + str(obj)
 
+def printDict (obj):
+  for k,v in obj.items():
+    print k,v

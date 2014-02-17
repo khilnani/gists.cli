@@ -18,6 +18,7 @@ CREDENTIALS = '/.git-credentials'   # Uses first entry. Format: https://USER:TOK
 token = None
 username = None
 password = None
+authcode = None
 
 #-------------------------------------------
 
@@ -48,8 +49,10 @@ def getCredentials ():
     log.debug ("Credentials: " + HOME + CREDENTIALS + " = " + token)
   elif username == None or password == None:
     log.debug ("Credentials: No token found.")
-    username = raw_input("Username:")
+    username = raw_input("Username: ")
     password = getpass.getpass()
+    token = None
+    auth(username, password)
 
 #-------------------------------------------
 
@@ -73,36 +76,44 @@ def delete (path, data={}, params={}):
 
 #-------------------------------------------
 
-def call (meth, path, data={}, params={}):
-  global token, username, password
+def call (meth, path, data={}, params={}, headers={}):
+  global token, username, password, authcode
   result = None
   url = GITHUB_API + path
   data = json.dumps(data)
   log.debug ('Json data: ' + data)
-  headers = {'Content-type': 'application/x-www-form-urlencoded'}
+
+  if meth == 'post' or meth == 'patch':
+    headers['Content-type'] = 'application/x-www-form-urlencoded'
+  if authcode:
+    headers['X-GitHub-OTP'] = authcode
+    log.debug('Using authcode.')
+
   try:
     if token != None:
       params['access_token'] = token
       if meth == 'get':
-        request = requests.get( url, params=params )
+        request = requests.get( url, params=params, headers=headers )
       if meth == 'post':
         request = requests.post( url, params=params, data=data, headers=headers )
       if meth == 'patch':
         request = requests.patch( url, params=params, data=data, headers=headers )
       if meth == 'delete':
-        request = requests.delete( url, params=params )
+        request = requests.delete( url, params=params, headers=headers )
       log.debug ('API ({0}): {1}'.format(meth, request.url))
     else:
       if meth == 'get':
-        request = requests.get( url, auth=(username, password), params=params )
+        request = requests.get( url, auth=(username, password), params=params, headers=headers )
       if meth == 'post':
         request = requests.post( url, auth=(username, password), params=params, data=data, headers=headers )
       if meth == 'patch':
         request = requests.patch( url, auth=(username, password), params=params, data=data, headers=headers )
       if meth == 'delete':
-        request = requests.delete( url, auth=(username, password), params=params )
+        request = requests.delete( url, auth=(username, password), params=params, headers=headers )
       log.debug ('API ({0}): {1}'.format(meth, request.url))
-    _checkStatus( request.status_code )
+
+    _checkStatus( request )
+
     if meth != 'delete':
       result = json.loads( request.text )
   except Exception as e: 
@@ -110,11 +121,58 @@ def call (meth, path, data={}, params={}):
     sys.exit(0)
   return result
 
+#-------------------------------------------
+
+def auth (username, password):
+  global authcode
+  log.debug('Authenticating ...')
+
+  url = GITHUB_API + '/authorizations'
+
+  request = requests.get( url, auth=(username, password) )
+  log.debug('request.status_code: {0}'.format(request.status_code))
+  log.debug('request.text: {0}'.format(request.text))
+  log.debug(request.headers)
+
+  # 401 means unsuccessful basic auth
+  if request.status_code == 401:
+    # check if the OTP header exists... it should
+    if 'X-GitHub-OTP' in request.headers:
+      log.debug('OTP: {0}'.format( request.headers['X-GitHub-OTP'] ))
+      # is OTP required? 
+      if request.headers['X-GitHub-OTP'].lower().find('required;') > -1:
+        # If sms, request an sms and then prompt for code
+        if request.headers['X-GitHub-OTP'].lower().find('sms') > -1:
+          print('Requesting SMS from GitHub ...')
+          request = requests.post( url, auth=(username, password) )
+          log.debug('request.status_code: {0}'.format(request.status_code))
+          log.debug('request.text: {0}'.format(request.text))
+          log.debug(request.headers)
+
+          if request.status_code == 401:
+            authcode = getpass.getpass('Two factor authentication code: ')
+          else:
+            print('Unable to request SMS from Github')
+        # if not sms, assume application, prompt for code
+        else:
+          log.debug('OTP code did not sms. Assume application...')
+          authcode = getpass.getpass('Two factor authentication code: ')
+      else:
+        log.debug('OTP not required.')
+    else:
+      print 'Github rejected the username and password but didnt send an OTP header. Try again please'
+  else:
+    # username,pass accepted
+    log.debug('Username and password accepted.')
 
 #-------------------------------------------
 
-def _checkStatus (code):
+def _checkStatus (request):
+  code = request.status_code
+  
   log.debug ('Github API Response Code: %s' % str(code))
+  log.debug(request.headers)
+
   if code == 200 or code == 201 or code == 204:
     pass
   elif code == 404 or code == 403:
