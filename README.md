@@ -117,7 +117,7 @@ To avoid the Public/private Gist type prompt -
 
 **Delete to a Gist**
 
-- `gists delete ID`
+- `gists delete ID` - Will prompt for confirmation.
 
 # For The Advanced User
 
@@ -234,7 +234,7 @@ For more control/specificity
 
 **Delete**
 
-- `gists delete|del|d|--delete|--del|-d ID` - Delete a Gist.
+- `gists delete|del|d|--delete|--del|-d ID` - Delete a Gist. Will prompt for confirmation.
 
 > ID can be a Gist ID or Index ID (of the Gist in the List view) Index must be in the format `'#N'`, `%N` , `.N` or `:N`
 
