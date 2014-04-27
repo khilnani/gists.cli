@@ -46,17 +46,22 @@ In addition to conventional view, download, edit and delete support, the applica
 
 ## Installation
 
-- Install Python Setup Tools
+- Mac OS X / Linux 
+  - `sudo easy_install gists.cli`
+
+- Using PIP
   - Linux
-    - Run `yum install python-setuptools`
-  - Manual Install
-    - Run `curl -v https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | sudo python` or, follow instructions at [https://pypi.python.org/pypi/setuptools#installation-instructions]
-- Install the Python package manager PIP (http://www.pip-installer.org/)
-  - Run `sudo easy_install pip`
-- Once PIP is installed, 
-  - Run `sudo pip install gists.cli`
-  - Run `sudo pip install gists.cli --upgrade` if upgrading.
-  - Check the installed version by running `pip show gists.cli`
+    - Install Python Setup Tools
+      - CentOS
+        - Run `yum install python-setuptools`
+      - Manual Install
+        - Run `curl -v https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | sudo python` or, follow instructions at [https://pypi.python.org/pypi/setuptools#installation-instructions]
+  - Install the Python package manager PIP (http://www.pip-installer.org/)
+    - Run `sudo easy_install pip`
+  - Once PIP is installed, 
+    - Run `sudo pip install gists.cli`
+    - Run `sudo pip install gists.cli --upgrade` if upgrading.
+    - Check the installed version by running `pip show gists.cli`
 
 ## Authentication
 
