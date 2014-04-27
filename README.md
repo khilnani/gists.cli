@@ -48,7 +48,6 @@ In addition to conventional view, download, edit and delete support, the applica
 
 - Mac OS X / Linux 
   - `sudo easy_install gists.cli`
-
 - Using PIP
   - Linux
     - Install Python Setup Tools
