@@ -1,5 +1,4 @@
-#!/bin/sh
+#!/bin/sh -x
 
 sudo easy_install pip
-sudo pip install requests
-sudo pip install texttable
+sudo pip install -r requirements.txt

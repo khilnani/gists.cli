@@ -1,2 +1,2 @@
-requests
-texttable
+requests==2.11.1
+texttable==0.8.4
