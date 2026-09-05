@@ -1,0 +1,66 @@
+name: Build CrossInk Text Dashboard
+
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-x3-x4:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Text Dashboard build files
+        uses: actions/checkout@v6
+        with:
+          ref: crossink-text-dashboard-build
+          path: buildrepo
+
+      - name: Checkout CrossInk v1.5.1-rc-6
+        uses: actions/checkout@v6
+        with:
+          repository: uxjulia/CrossInk
+          ref: v1.5.1-rc-6
+          submodules: recursive
+          path: CrossInk
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+
+      - name: Apply Text Dashboard theme
+        run: python buildrepo/crossink-text-dashboard/apply_text_dashboard.py CrossInk
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+        with:
+          version: "latest"
+          enable-cache: true
+
+      - name: Cache PlatformIO packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.platformio/packages
+            ~/.platformio/platforms
+          key: ${{ runner.os }}-crossink-text-dashboard-pio-${{ hashFiles('CrossInk/platformio.ini', 'CrossInk/platformio.local.example.ini') }}
+
+      - name: Install PlatformIO Core
+        run: uv pip install --system -U https://github.com/pioarduino/platformio-core/archive/refs/tags/v6.1.19.zip
+
+      - name: Build X3/X4 firmware
+        working-directory: CrossInk
+        run: pio run -j1 -e default
+
+      - name: Rename firmware
+        run: cp CrossInk/.pio/build/default/firmware-x3-x4.bin firmware-x3-x4-v1.5.1-rc6-text-dashboard.bin
+
+      - name: Upload firmware binary
+        uses: actions/upload-artifact@v7
+        with:
+          name: crossink-text-dashboard-x3-x4
+          path: firmware-x3-x4-v1.5.1-rc6-text-dashboard.bin
+          if-no-files-found: error
