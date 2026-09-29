@@ -1,0 +1,21 @@
+name: Delete temporary CrossInk build branch
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/delete-crossink-text-dashboard-branch.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  delete-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Delete crossink-text-dashboard-build branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" --delete crossink-text-dashboard-build
