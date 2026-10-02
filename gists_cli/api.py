@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-import sys, os.path, json, getpass, requests, log, util
-
+from __future__ import print_function, absolute_import
+import sys, os.path, json, getpass, requests
+from . import log, util
 
 #-------------------------------------------
 # Config
@@ -30,7 +31,7 @@ def updateCredentials ():
     file.write( new_token )
     file.close()
     token = new_token
-    print "New token written to: " + HOME + TOKENFILE
+    print("New token written to: " + HOME + TOKENFILE)
   except Exception as e:
     log.error ("Insufficient privilages to write the access token to %s." % (HOME + TOKENFILE))
     log.error ("Message: " + str(e))
@@ -49,7 +50,7 @@ def getCredentials ():
     log.debug ("Credentials: " + HOME + CREDENTIALS + " = " + token)
   elif username == None or password == None:
     log.debug ("Credentials: No token found.")
-    username = raw_input("Username: ")
+    username = input("Username: ")
     password = getpass.getpass()
     token = None
     auth(username, password)
@@ -117,7 +118,7 @@ def call (meth, path, data={}, params={}, headers={}):
     if meth != 'delete':
       result = json.loads( request.text )
   except Exception as e: 
-    print 'Oops. We had a slight problem with the GitHub SSO: ' + str( e )
+    print('Oops. We had a slight problem with the GitHub SSO: ' + str( e ))
     sys.exit(0)
   return result
 
@@ -160,7 +161,7 @@ def auth (username, password):
       else:
         log.debug('OTP not required.')
     else:
-      print 'Github rejected the username and password but didnt send an OTP header. Try again please'
+      print('Github rejected the username and password but didnt send an OTP header. Try again please')
   else:
     # username,pass accepted
     log.debug('Username and password accepted.')
@@ -176,15 +177,15 @@ def _checkStatus (request):
   if code == 200 or code == 201 or code == 204:
     pass
   elif code == 404 or code == 403:
-    print 'Please check your user name and/or password.'
+    print('Please check your user name and/or password.')
     sys.exit(0)
   elif code == 400:
-    print 'Bad Request'
+    print('Bad Request')
     sys.exit(0)
   elif code == 422:
-    print 'Unprocessable Entity'
+    print('Unprocessable Entity')
     sys.exit(0)
   else:
-    print 'Uknown Error: ' + str(code)
+    print('Uknown Error: ' + str(code))
     sys.exit(0)
 

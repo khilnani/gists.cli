@@ -1,6 +1,9 @@
 #!/usr/bin/env python
+from __future__ import absolute_import
+from __future__ import print_function
 
-import sys, actions, log, util, defaults
+import sys
+from . import defaults,log,util,actions
 
 #-------------------------------------------
 
@@ -68,12 +71,12 @@ def _deriveCmd( args ):
 #-------------------------------------------
 
 def _printNoMatch():
-  print 'Unfortunately, no command match found for supplied arguments.'
+  print('Unfortunately, no command match found for supplied arguments.')
 
 #-------------------------------------------
 
 def _printNoImpl():
-  print 'Unfortunately, this command has not been implemented as yet.'
+  print('Unfortunately, this command has not been implemented as yet.')
 
 #-------------------------------------------
 
@@ -88,7 +91,7 @@ def main ( ):
   
   if len(args) == 1:
     log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % util.fileName)
-    print ''
+    print('')
 
   del args[0] # Delete the filename
   cmd = None
@@ -215,7 +218,7 @@ def main ( ):
     _printNoMatch()
 
   log.debug ("Done.")
-  print ''
+  print('')
 
 #-------------------------------------------
 
@@ -223,6 +226,6 @@ if __name__ == "__main__":
   try:
     main ()
   except KeyboardInterrupt:
-    print 'Execution aborted.'
+    print('Execution aborted.')
 
 #-------------------------------------------
