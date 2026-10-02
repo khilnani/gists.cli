@@ -44,6 +44,22 @@ In addition to conventional view, download, edit and delete support, the applica
 
 # For the Casual User
 
+## Extension
+
+- install with github
+
+  - pip install `git+https://github.com/jiahut/gists.cli`
+
+  - pip install --upgrade `https://github.com/jiahut/gists.cli/tarball/master`
+
+- support open gist at browser
+
+  - run gists open .1
+
+- add the `-` as the prefix 
+
+  - run gists -o -1
+
 ## Installation
 
 - Mac OS X / Linux 

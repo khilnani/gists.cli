@@ -1,8 +1,12 @@
 #!/usr/bin/env python
 
-import sys, actions, log, util
-from optparse import OptionParser
-from optparse import OptionGroup
+import sys
+from optparse import OptionGroup, OptionParser
+
+import log
+import util
+import actions
+
 #-------------------------------------------
 
 _supress = False
@@ -11,6 +15,7 @@ parser = OptionParser("\n\r\n\r    Manage your Gists!")
 parser.add_option("--list","-l", action="store_const", const="list", dest="cmd", help="List your public and private Gists.")
 parser.add_option("--token","-t", action="store_const", const="token", dest="cmd", help="Set your GitHub OAuth token to avoid the username/password prompt.")
 parser.add_option("--view","-v", action="store_const", const="view", dest="cmd", help="View a Gist's content on screen.")
+parser.add_option("--open","-o", action="store_const", const="open", dest="cmd", help="Open a Gist at browser.")
 parser.add_option("--get","-g", action="store_const", const="get", dest="cmd", help="Download a Gist.")
 parser.add_option("--create","-c","--new","-n", action="store_const", const="create", dest="cmd", help="Create a new Gist.")
 parser.add_option("--supress", "-s", action="store_true", dest="supress", default=False, help="Supress all prompts, assume default response 'yes'.")
@@ -35,7 +40,7 @@ def _hasCmd( _args ):
   log.debug ("_hasCmd: " + str(options.cmd))
   if options.cmd:
     return True
-  log.debug ("_hasCmd: No Command Found") 
+  log.debug ("_hasCmd: No Command Found")
   return False
 
 #-------------------------------------------
@@ -53,7 +58,7 @@ def _deriveCmd( args ):
       # view ID
       cmd = "view"
     elif util.isFileOrDir( args[0] ) == True:
-      # create FILE 
+      # create FILE
       cmd = "create"
     elif args[0].strip().isalnum() == False:
       # create 'Content'
@@ -91,7 +96,7 @@ def main ( ):
   actions.supress( util.argv(["s", "silent","supress"]) )
 
   args = sys.argv
-  
+
   if len(args) == 1:
     log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % sys.argv[0])
     print ''
@@ -124,6 +129,8 @@ def main ( ):
     actions.updateCredentials()
   elif cmd in ("view","--view","v","-v"):
     actions.view( args[0] )
+  elif cmd in ("open","--open","o","-o"):
+    actions.open( args[0] )
   elif cmd in ("get","--get","g""-g"):
     actions.get( args[0], args[1] )
   elif cmd in ("append","--append","a","-a"):
@@ -147,11 +154,11 @@ def main ( ):
         actions.create( filename = args[0] )
       else:
         actions.create( content = args[0] )
-    elif len(args) == 2: 
+    elif len(args) == 2:
       # create Boolean and File
       # create Boolean and Content
-      # create Description and File 
-      # create Description and Content 
+      # create Description and File
+      # create Description and Content
       if util.parseBool( args[0] ) != None:
         if util.isFileOrDir(args[1]) == True:
           actions.create( public=util.parseBool( args[0] ), filename=args[1] )

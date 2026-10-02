@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
-import sys, actions, log, util, defaults
+import sys
+
+import log
+import util
+import actions
+import defaults
 
 #-------------------------------------------
 
@@ -40,7 +45,7 @@ def _deriveCmd( args ):
       # view ID
       cmd = "view"
     elif util.isFileOrDir( args[0] ) == True:
-      # create/new  FILE 
+      # create/new  FILE
       cmd = "new"
     elif args[0].strip().isalnum() == False:
       # create/new 'Content'
@@ -50,10 +55,10 @@ def _deriveCmd( args ):
       # get ID 'Dir'
       cmd =  "get"
     else:
-      # create/new Boolean and File
-      # create/new Boolean and Content
-      # create/new Description and File
-      # create/new Description and Content
+      # create/new boolean and file
+      # create/new boolean and content
+      # create/new description and file
+      # create/new description and content
       cmd = "new"
   elif alen == 3 and util.parseBool( args[0] ) != None:
       # create/new Boolean, Description and File
@@ -61,19 +66,19 @@ def _deriveCmd( args ):
       cmd = "new"
   elif alen == 3 and util.parseBool( args[0] ) == None and util.isGistIdent(args[0]) == True:
       # append ID, Description and File
-      # append ID, Description and Content 
+      # append ID, Description and Content
       cmd = "append"
   return cmd
 
 #-------------------------------------------
 
 def _printNoMatch():
-  print 'Unfortunately, no command match found for supplied arguments.'
+  print('Unfortunately, no command match found for supplied arguments.')
 
 #-------------------------------------------
 
 def _printNoImpl():
-  print 'Unfortunately, this command has not been implemented as yet.'
+  print('Unfortunately, this command has not been implemented as yet.')
 
 #-------------------------------------------
 
@@ -85,10 +90,10 @@ def main ( ):
   actions.supress( util.argv( _cmds['Supress']) )
 
   args = sys.argv
-  
+
   if len(args) == 1:
     log.comment ("No arguments specified, listing your Gists. Try '%s help' if you need help." % util.fileName)
-    print ''
+    print('')
 
   del args[0] # Delete the filename
   cmd = None
@@ -118,6 +123,11 @@ def main ( ):
     actions.list()
   elif cmd in (_cmds['Token']):
     actions.updateCredentials()
+  elif cmd in (_cmds['Open']):
+    if len(args) == 1:
+      actions.open( args[0] )
+    else:
+      _printNoMatch()
   elif cmd in (_cmds['View']):
     if len(args) == 1:
       actions.view( args[0] )
@@ -139,11 +149,11 @@ def main ( ):
         actions.new( filename = args[0] )
       else:
         actions.new( content = args[0] )
-    elif len(args) == 2: 
+    elif len(args) == 2:
       # create Boolean and File
       # create Boolean and Content
-      # create Description and File 
-      # create Description and Content 
+      # create Description and File
+      # create Description and Content
       if util.parseBool( args[0] ) != None:
         if util.isFileOrDir(args[1]) == True:
           actions.new( public=util.parseBool( args[0] ), filename=args[1] )
@@ -167,9 +177,9 @@ def main ( ):
     # Each option will prompt for public/pvt and description.
     if len(args) == 0:
       _printNoMatch()
-    elif len(args) == 2: 
+    elif len(args) == 2:
       # append: id File
-      # append: id Content 
+      # append: id Content
       if util.isFileOrDir(args[1]) == True:
         actions.append( args[0], filename=args[1] )
       else:
@@ -187,9 +197,9 @@ def main ( ):
     # Each option will prompt for public/pvt and description.
     if len(args) == 0:
       _printNoMatch()
-    elif len(args) == 2: 
+    elif len(args) == 2:
       # append: id File
-      # append: id Content 
+      # append: id Content
       if util.isFileOrDir(args[1]) == True:
         actions.update( args[0], filename=args[1] )
       else:
@@ -215,7 +225,7 @@ def main ( ):
     _printNoMatch()
 
   log.debug ("Done.")
-  print ''
+  print('')
 
 #-------------------------------------------
 
@@ -223,6 +233,6 @@ if __name__ == "__main__":
   try:
     main ()
   except KeyboardInterrupt:
-    print 'Execution aborted.'
+    print('Execution aborted.')
 
 #-------------------------------------------
