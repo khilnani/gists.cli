@@ -293,6 +293,17 @@ If you would like to contribute changes to the code base
   -  Change directory to `./_vagrant`
   -  Run `./debug.ssh up centos` or `./debug.ssh up ubuntu` - This runs Vagrant with Debug Level INFO
 
+## Docker
+
+- Build the container with `docker build -t gists .`
+- If you run the image using the command below, everything in the current directory will be available within the container. In particular, it is useful to put your oauth token into `.gists`, where it will be found by gists running in the container
+- Example usage:
+  - List gists: `docker run --rm -it -v $(pwd):/gists gists -l`
+  - Download: `docker run --rm -it -v $(pwd):/gists gists -g :1 .`
+- An example wrapper script is in `gists-docker` and can be invoked in place of `gists`. All options are passed to gists running within the container
+- Caveats:
+  - Only the current working directory is mounted in the examples above. Files passed as options will not be available if they are in a different directory
+
 # Issues and Roadmap
 
 - Take a look at https://github.com/khilnani/gists.cli/issues to view Issues and Milestones.
